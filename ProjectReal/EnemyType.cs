@@ -28,9 +28,7 @@ namespace ProjectReal
             _typeName = typeName;
             _isCamoflagued = iscamoflagued;
 
-        }
-
-       
+        }      
 
     }
 }
