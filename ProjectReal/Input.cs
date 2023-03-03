@@ -31,10 +31,5 @@ namespace ProjectReal
             _previousState = _currentState;
             _currentState = Mouse.GetState();
         }
-
-        //if (mouse.leftbutton == buttonstate.pressed) 
-        //if (myRectangle.contains(mouse.x)(mouse.Y) 
-
-
     }
 }
