@@ -1,0 +1,4 @@
+﻿Soldier, SoldierTexture
+Sprinter, SprinterTexture
+Tank, TankTexture
+Boss, BossTexture

@@ -1,0 +1,4 @@
+﻿grass,towerDefense_tile038,0.8,true,g
+sand,towerDefense_tile111,0.5,true,s
+rock,towerDefense_tile088,1,true,r
+mud,towerDefense_tile061,0.2,false,m

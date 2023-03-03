@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Profile>Reach</Profile>
+  <Platform>DesktopGL</Platform>
+  <Config />
+  <SourceFiles>
+    <File>C:/Users/ivanf/source/repos/ProjectReal/ProjectReal/Content/towerDefense_tile038.png</File>
+    <File>C:/Users/ivanf/source/repos/ProjectReal/ProjectReal/Content/towerDefense_tile061.png</File>
+    <File>C:/Users/ivanf/source/repos/ProjectReal/ProjectReal/Content/towerDefense_tile088.png</File>
+    <File>C:/Users/ivanf/source/repos/ProjectReal/ProjectReal/Content/towerDefense_tile111.png</File>
+  </SourceFiles>
+  <DestFiles>
+    <File>grassTexture.png</File>
+    <File>mudTexture.png</File>
+    <File>rockTexture.png</File>
+    <File>sandTexture.png</File>
+  </DestFiles>
+</SourceFileCollection>
