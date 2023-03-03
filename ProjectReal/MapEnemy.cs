@@ -10,7 +10,7 @@ namespace ProjectReal
 {
     class MapEnemy
     {
-              public Rectangle _hitbox { get; }
+        public Rectangle _hitbox { get; }
         public Vector2 _position { get; }
         private void FollowPath()
         {
