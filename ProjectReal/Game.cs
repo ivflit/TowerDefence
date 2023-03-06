@@ -59,8 +59,24 @@ namespace ProjectReal
 
             _mouse.update();
 
-            
-          
+            // Get the current state of the mouse
+            MouseState mouseState = Mouse.GetState();
+
+            // Check if the left button is pressed
+            if (mouseState.LeftButton == ButtonState.Pressed)
+            {
+                // Get the current position of the mouse
+                Vector2 mousePosition = new Vector2(mouseState.X, mouseState.Y);
+
+                // Do something with the mouse position
+                // For example, draw a circle at the mouse position
+                Texture2D circleTexture = Content.Load<Texture2D>("circle");
+                _spriteBatch.Begin();
+                _spriteBatch.Draw(circleTexture, mousePosition, Color.White);
+                _spriteBatch.End();
+            }
+
+
             // TODO: Add your update logic here
 
             base.Update(gameTime);
