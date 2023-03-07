@@ -21,8 +21,7 @@ namespace ProjectReal
 
         public string _name { get; set; }
         public Texture2D _texture { get; set; }
-        public string _textureFilename { get;} 
-        public float _movementModifier { get; }
+               public float _movementModifier { get; }
         public bool _isTowerPlaceable { get; }
 
 

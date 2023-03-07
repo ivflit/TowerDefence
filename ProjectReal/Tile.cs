@@ -19,9 +19,9 @@ namespace ProjectReal
             _isEndTile = isEndTile;
         }
 
-        public Terrain _terrain { get; }
-        public bool _isSpawner { get; }
-        public bool _isEndTile { get; }
+        public Terrain _terrain { get; set; }
+        public bool _isSpawner { get; set; }
+        public bool _isEndTile { get; set; }
 
 
         public static void loadContent()

@@ -6,11 +6,14 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
+using System.ComponentModel.Design;
+
 namespace ProjectReal
 {
     class Map
     {
-        char[,] _map;
+        Tile[,] _map;
+        char[,] _symbolMap;
         Dictionary<char, Terrain> _symbolToTerrainDictionary;
        
          
@@ -44,7 +47,7 @@ namespace ProjectReal
                         
                         for (int i = 0; i < lineInput.Length; i++)
                         {
-                            _map[i, y] = Convert.ToChar(splitLine[i]);
+                            _symbolMap[i, y] = Convert.ToChar(splitLine[i]);
                         }
                         y++;
                     }
@@ -66,8 +69,7 @@ namespace ProjectReal
             char symbol;
             float movementModifier;
             Boolean isObjectPlaceable;
-            
-            int y = 0;
+                       int y = 0;
             try
             {
                 using (System.IO.StreamReader ReaderForTileMap = new System.IO.StreamReader("Terrain.txt"))
@@ -87,7 +89,16 @@ namespace ProjectReal
                         symbol = Convert.ToChar(splitLine[4]);
                         Texture2D terrainTexture = Game._graphicsloader.Load<Texture2D>(fileName);
                         terrain = new Terrain(name,terrainTexture,movementModifier,isObjectPlaceable);
-                        _symbolToTerrainDictionary.Add(symbol, terrain);
+                        if (_symbolToTerrainDictionary.ContainsKey(symbol)) { 
+                        
+                        }
+                        else
+                        {
+                            _symbolToTerrainDictionary.Add(symbol, terrain);
+                        }
+                            
+                        
+                      
                                                               
                                                   
                     }
@@ -99,22 +110,22 @@ namespace ProjectReal
                 Console.WriteLine(e.Message);
             }
         }
-        private void CreateTiles()
+        private void CreateTile(Terrain terrain)
         {
-            
-           
-                
+            Tile newTile;
+            newTile = new Tile(terrain,false,false); // Creates a new tile as a new terrain is created
+                                    
         }
 
         private void DisplayMap()
         {
             Terrain terrain;
-            for (int y = 0; y < _map.GetUpperBound(1); y++)
+            for (int y = 0; y < _symbolMap.GetUpperBound(1); y++)
             {
-                for (int x = 0; x < _map.GetUpperBound(0); x++)
+                for (int x = 0; x < _symbolMap.GetUpperBound(0); x++)
                 {
 
-                    _symbolToTerrainDictionary.TryGetValue(_map[x, y], out terrain);
+                    _symbolToTerrainDictionary.TryGetValue(_symbolMap[x, y], out terrain);
                    //DRAW terrain._texture
                 }
 
