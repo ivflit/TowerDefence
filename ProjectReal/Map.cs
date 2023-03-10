@@ -15,7 +15,7 @@ namespace ProjectReal
         Tile[,] _map;
         char[,] _symbolMap;
         Dictionary<char, Terrain> _symbolToTerrainDictionary;
-       
+       List<Tile> _tiles;
          
         public Map()
         {
@@ -62,8 +62,7 @@ namespace ProjectReal
 
         private void LoadTerrain() //loading from terrain.txt and making new terrain based on the content of the file
         {
-            int terrainCount;
-            String lineInput;
+                        String lineInput;
             string name;
             string fileName;
             char symbol;
@@ -89,6 +88,7 @@ namespace ProjectReal
                         symbol = Convert.ToChar(splitLine[4]);
                         Texture2D terrainTexture = Game._graphicsloader.Load<Texture2D>(fileName);
                         terrain = new Terrain(name,terrainTexture,movementModifier,isObjectPlaceable);
+                        CreateTile(terrain);
                         if (_symbolToTerrainDictionary.ContainsKey(symbol)) { 
                         
                         }
@@ -110,22 +110,42 @@ namespace ProjectReal
                 Console.WriteLine(e.Message);
             }
         }
-        private void CreateTile(Terrain terrain)
+        private void CreateTile(Terrain terrain) //called during LoadTerrain()
         {
             Tile newTile;
             newTile = new Tile(terrain,false,false); // Creates a new tile as a new terrain is created
-                                    
+            _tiles.Add(newTile);           
         }
 
-        private void DisplayMap()
+        private void CreateMap()
         {
             Terrain terrain;
             for (int y = 0; y < _symbolMap.GetUpperBound(1); y++)
             {
                 for (int x = 0; x < _symbolMap.GetUpperBound(0); x++)
                 {
-
                     _symbolToTerrainDictionary.TryGetValue(_symbolMap[x, y], out terrain);
+                    for (int i = 0; i <_tiles.Count; i++)
+                    {
+                        if (_tiles[i]._terrain._name == terrain._name)
+                        {
+                            _map[x,y] = _tiles[i];
+                        }
+                    }
+                    
+                }
+
+
+            }
+        }
+        private void DisplayMap()
+        {
+          
+            for (int y = 0; y < _map.GetUpperBound(1); y++)
+            {
+                for (int x = 0; x < _map.GetUpperBound(0); x++)
+                {
+                    _map[x, y]._terrain._texture;
                    //DRAW terrain._texture
                 }
 

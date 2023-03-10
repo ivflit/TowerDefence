@@ -12,11 +12,9 @@ namespace ProjectReal
 {
     class Projectile
     {
-        public Projectile(string textureFilename, Vector2 position, Rectangle hitbox, string name, int speed, int damage)
+        public Projectile(Texture2D texture, string name, int speed, int damage)
         {
-            _textureFilename = textureFilename;
-            _position = position;
-            _hitbox = hitbox;
+            _texture = texture;
             _name = name;
             _speed = speed;
             _damage = damage;
@@ -24,8 +22,8 @@ namespace ProjectReal
 
         //csv (name, texture, damage, speed)
 
+       
         public Texture2D _texture {get;}
-        public string _textureFilename { get; }
         public Vector2 _position { get; set; }
         public Rectangle _hitbox { get; } //rectangle created based on projectile texture width/height
         public string _name { get; }
