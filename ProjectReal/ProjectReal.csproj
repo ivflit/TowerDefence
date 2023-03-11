@@ -11,8 +11,29 @@
     <AssemblyName />
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Content\towerDefense_tile038.png" />
+    <None Remove="Content\towerDefense_tile061.png" />
+    <None Remove="Content\towerDefense_tile088.png" />
+    <None Remove="Content\towerDefense_tile111.png" />
+    <None Remove="Content\towerDefense_tile181.png" />
+    <None Remove="Content\towerDefense_tile204.png" />
+    <None Remove="Content\towerDefense_tile226.png" />
+    <None Remove="Content\towerDefense_tile245.png" />
+    <None Remove="Content\towerDefense_tile246.png" />
+    <None Remove="Content\towerDefense_tile247.png" />
+    <None Remove="Content\towerDefense_tile248.png" />
+    <None Remove="Content\towerDefense_tile249.png" />
+    <None Remove="Content\towerDefense_tile250.png" />
+    <None Remove="Content\towerDefense_tile252.png" />
+    <None Remove="Content\towerDefense_tile272.png" />
+    <None Remove="Content\towerDefense_tile296.png" />
     <None Remove="Icon.ico" />
     <None Remove="Icon.bmp" />
+    <None Remove="Leaderboard.txt" />
+    <None Remove="Projectile.txt" />
+    <None Remove="Terrain.txt" />
+    <None Remove="TileMap.txt" />
+    <None Remove="Towers.txt" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Icon.ico" />
@@ -27,5 +48,70 @@
   <ItemGroup>
     <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.0.1641" />
     <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.0.1641" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\towerDefense_tile038.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\towerDefense_tile061.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\towerDefense_tile088.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\towerDefense_tile111.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\towerDefense_tile181.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\towerDefense_tile204.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\towerDefense_tile226.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\towerDefense_tile245.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\towerDefense_tile246.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\towerDefense_tile247.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\towerDefense_tile248.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\towerDefense_tile249.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\towerDefense_tile250.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\towerDefense_tile252.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\towerDefense_tile272.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\towerDefense_tile296.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Leaderboard.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Projectile.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Terrain.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TileMap.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Towers.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 </Project>

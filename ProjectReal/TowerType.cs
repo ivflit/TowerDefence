@@ -24,7 +24,7 @@ namespace ProjectReal
 
         public TowerType(string name, int upgradeOneCost, int upgradeTwoCost, Texture2D texture, int health, int cost, string description, Projectile projectile)
         {
-            this.name = name;
+            _name = name;
             _upgradeOneCost = upgradeOneCost;
             _upgradeTwoCost = upgradeTwoCost;
             _texture = texture;

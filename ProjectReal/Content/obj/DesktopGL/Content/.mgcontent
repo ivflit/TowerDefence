@@ -11,18 +11,32 @@
     <File>C:/Users/ivanf/source/repos/ProjectReal/ProjectReal/Content/towerDefense_tile181.png</File>
     <File>C:/Users/ivanf/source/repos/ProjectReal/ProjectReal/Content/towerDefense_tile204.png</File>
     <File>C:/Users/ivanf/source/repos/ProjectReal/ProjectReal/Content/towerDefense_tile226.png</File>
+    <File>C:/Users/ivanf/source/repos/ProjectReal/ProjectReal/Content/towerDefense_tile245.png</File>
+    <File>C:/Users/ivanf/source/repos/ProjectReal/ProjectReal/Content/towerDefense_tile246.png</File>
+    <File>C:/Users/ivanf/source/repos/ProjectReal/ProjectReal/Content/towerDefense_tile247.png</File>
+    <File>C:/Users/ivanf/source/repos/ProjectReal/ProjectReal/Content/towerDefense_tile248.png</File>
     <File>C:/Users/ivanf/source/repos/ProjectReal/ProjectReal/Content/towerDefense_tile249.png</File>
     <File>C:/Users/ivanf/source/repos/ProjectReal/ProjectReal/Content/towerDefense_tile250.png</File>
+    <File>C:/Users/ivanf/source/repos/ProjectReal/ProjectReal/Content/towerDefense_tile252.png</File>
+    <File>C:/Users/ivanf/source/repos/ProjectReal/ProjectReal/Content/towerDefense_tile272.png</File>
+    <File>C:/Users/ivanf/source/repos/ProjectReal/ProjectReal/Content/towerDefense_tile296.png</File>
   </SourceFiles>
   <DestFiles>
-    <File>grassTexture.png</File>
-    <File>mudTexture.png</File>
-    <File>rockTexture.png</File>
-    <File>sandTexture.png</File>
-    <File>TowerBase.png</File>
-    <File>RocketTower.png</File>
-    <File>FlameThrower.png</File>
-    <File>SlowFiringTower.png</File>
-    <File>FastFiringTower.png</File>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
   </DestFiles>
 </SourceFileCollection>

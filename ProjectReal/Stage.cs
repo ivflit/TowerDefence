@@ -24,6 +24,7 @@ namespace ProjectReal
         private Dictionary<char, Tile> _symbolToTile;
         public Stage()
         {
+            _map = new Map();
         }
 
         private void DictionaryLoad()
@@ -48,9 +49,9 @@ namespace ProjectReal
         {
 
         }
-        public void Draw()
+        public void Draw(SpriteBatch spriteBatch)
         {
-
+            _map.Draw(ref spriteBatch);
         }
 
     }

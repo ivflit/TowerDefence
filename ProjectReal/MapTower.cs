@@ -12,6 +12,15 @@ namespace ProjectReal
     class MapTower //Tower that is on the map
     {
        private bool _unlocked = false;
+
+        public MapTower(bool unlocked, TowerType towerType)
+        {
+            _unlocked = unlocked;
+            _towerType = towerType;
+
+        }
+
+        public Dictionary<string,Projectile> _nameOfProjectilesToProjectile { get; set; }
         public TowerType _towerType { get; }
        public Vector2 _position { get; set; }
         
@@ -31,9 +40,8 @@ namespace ProjectReal
                     while (ReaderForTileMap.EndOfStream == false)
                     {
                         Projectile projectile;
-                        Rectangle rectangle;
                         string[] splitLine;
-                        lineInput = ReaderForTileMap.ReadLine();
+                        lineInput = ReaderForTileMap.ReadLine().ToLower();
                         splitLine = lineInput.Split(",");
                         name = splitLine[0];
                         fileName = splitLine[1];
@@ -42,9 +50,9 @@ namespace ProjectReal
                         Texture2D ProjectileTexture = Game._graphicsloader.Load<Texture2D>(fileName);
                         //MAKE HITBOX FOR PROJECTILE WHEN IT GETS A POSITION
                         
-                        projectile = new Projectile(ProjectileTexture,name, speed, damage);
+                        projectile = new Projectile(ProjectileTexture,name,speed,damage);
                        
-
+                        _nameOfProjectilesToProjectile.Add(name,projectile);    
 
 
 
@@ -64,8 +72,6 @@ namespace ProjectReal
             string name;
             string fileName;
             String projectileType;
-            float movementModifier;
-            Boolean isObjectPlaceable;
             int y = 0;
             int cost;
             string descriptionOfTower;
@@ -81,8 +87,9 @@ namespace ProjectReal
                     while (ReaderForTileMap.EndOfStream == false)
                     {
                         TowerType towerType;
+                        Projectile projectile;
                         string[] splitLine;
-                        lineInput = ReaderForTileMap.ReadLine();
+                        lineInput = ReaderForTileMap.ReadLine().ToLower();
                         splitLine = lineInput.Split(",");
                         name = splitLine[0];
                         fileName = splitLine[1];
@@ -93,6 +100,7 @@ namespace ProjectReal
                         upgradeTwoCost = Convert.ToInt32(splitLine[6]);
                         health = Convert.ToInt32(splitLine[7]);
                         Texture2D TowerTopTexture = Game._graphicsloader.Load<Texture2D>(fileName);
+                        _nameOfProjectilesToProjectile.TryGetValue(projectileType, out projectile);
                         towerType = new TowerType(name, upgradeOneCost, upgradeTwoCost, TowerTopTexture, health, cost, descriptionOfTower, projectile);
 
 

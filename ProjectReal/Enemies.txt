@@ -1,4 +1,4 @@
-﻿Soldier, SoldierTexture
-Sprinter, SprinterTexture
-Tank, TankTexture
-Boss, BossTexture
+﻿Soldier,towerDefense_tile245,100,15,5,false
+Sprinter,towerDefense_tile248,60,25,false
+ArmoredSoldier,towerDefense_tile246,300,10,10,false
+Boss,towerDefense_tile247,1000,5,15,true

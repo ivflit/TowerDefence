@@ -17,7 +17,7 @@ namespace ProjectReal
         public static Input _mouse;
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
-        private Stage _currentstage;
+        private Stage _currentStage;
         public Input _input;
 
         
@@ -33,7 +33,7 @@ namespace ProjectReal
         {
             IsMouseVisible = true;
             _graphicsloader = Content;
-            _currentstage = new Stage();            		//creating a new stage
+            _currentStage = new Stage();            		//creating a new stage
             base.Initialize();
             Window.Title = "Tower defence";
             _graphics.PreferredBackBufferWidth = 1280;		//set game screen resolution
@@ -57,7 +57,7 @@ namespace ProjectReal
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            _mouse.update();
+           // _mouse.update();
 
             // Get the current state of the mouse
             MouseState mouseState = Mouse.GetState();
@@ -70,10 +70,10 @@ namespace ProjectReal
 
                 // Do something with the mouse position
                 // For example, draw a circle at the mouse position
-                Texture2D circleTexture = Content.Load<Texture2D>("circle");
-                _spriteBatch.Begin();
-                _spriteBatch.Draw(circleTexture, mousePosition, Color.White);
-                _spriteBatch.End();
+                //Texture2D circleTexture = Content.Load<Texture2D>("circle");
+                //_spriteBatch.Begin();
+                //_spriteBatch.Draw(circleTexture, mousePosition, Color.White);
+                //_spriteBatch.End();
             }
 
 
@@ -85,7 +85,7 @@ namespace ProjectReal
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
+            _currentStage.Draw(_spriteBatch);
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);
