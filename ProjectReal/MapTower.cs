@@ -21,6 +21,7 @@ namespace ProjectReal
         }
 
         public Dictionary<string,Projectile> _nameOfProjectilesToProjectile { get; set; }
+        public Dictionary<string, TowerType> _nameOfTowerToTower { get; set; }
         public TowerType _towerType { get; }
        public Vector2 _position { get; set; }
         
@@ -47,7 +48,7 @@ namespace ProjectReal
                         fileName = splitLine[1];
                         damage = Convert.ToInt32(splitLine[2]);
                         speed = Convert.ToInt32(splitLine[3]);
-                        Texture2D ProjectileTexture = Game._graphicsloader.Load<Texture2D>(fileName);
+                        Texture2D ProjectileTexture = Game1._graphicsloader.Load<Texture2D>(fileName);
                         //MAKE HITBOX FOR PROJECTILE WHEN IT GETS A POSITION
                         
                         projectile = new Projectile(ProjectileTexture,name,speed,damage);
@@ -72,7 +73,6 @@ namespace ProjectReal
             string name;
             string fileName;
             String projectileType;
-            int y = 0;
             int cost;
             string descriptionOfTower;
             int upgradeOneCost;
@@ -99,10 +99,10 @@ namespace ProjectReal
                         upgradeOneCost = Convert.ToInt32(splitLine[5]);
                         upgradeTwoCost = Convert.ToInt32(splitLine[6]);
                         health = Convert.ToInt32(splitLine[7]);
-                        Texture2D TowerTopTexture = Game._graphicsloader.Load<Texture2D>(fileName);
+                        Texture2D TowerTopTexture = Game1._graphicsloader.Load<Texture2D>(fileName);
                         _nameOfProjectilesToProjectile.TryGetValue(projectileType, out projectile);
                         towerType = new TowerType(name, upgradeOneCost, upgradeTwoCost, TowerTopTexture, health, cost, descriptionOfTower, projectile);
-
+                        _nameOfTowerToTower.Add(name, towerType);   
 
 
 

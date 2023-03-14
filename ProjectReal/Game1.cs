@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Content;
 
 namespace ProjectReal
 {
-    public class Game : Microsoft.Xna.Framework.Game //make everything private and then do the thing. Make a tile arc class which acts as the edge between two tiles
+    public class Game1 : Microsoft.Xna.Framework.Game //make everything private and then do the thing. Make a tile arc class which acts as the edge between two tiles
     {
         public static Settings.GameState _gameState ; //what's the game doing?
         public static ContentManager _graphicsloader;
@@ -21,7 +21,7 @@ namespace ProjectReal
         public Input _input;
 
         
-        public Game() //constructor
+        public Game1() //constructor
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
@@ -34,7 +34,7 @@ namespace ProjectReal
             IsMouseVisible = true;
             _graphicsloader = Content;
             _currentStage = new Stage();            		//creating a new stage
-            base.Initialize();
+            
             Window.Title = "Tower defence";
             _graphics.PreferredBackBufferWidth = 1280;		//set game screen resolution
             _graphics.PreferredBackBufferHeight = 720;
@@ -48,7 +48,7 @@ namespace ProjectReal
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
           
-            var game = new Microsoft.Xna.Framework.Game();
+           // var game = new Microsoft.Xna.Framework.Game();
             
         }
 
@@ -57,16 +57,16 @@ namespace ProjectReal
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-           // _mouse.update();
+           //_mouse.update();
 
             // Get the current state of the mouse
-            MouseState mouseState = Mouse.GetState();
+           //MouseState mouseState = Mouse.GetState();
 
             // Check if the left button is pressed
-            if (mouseState.LeftButton == ButtonState.Pressed)
+            //if (mouseState.LeftButton == ButtonState.Pressed)
             {
                 // Get the current position of the mouse
-                Vector2 mousePosition = new Vector2(mouseState.X, mouseState.Y);
+                //Vector2 mousePosition = new Vector2(mouseState.X, mouseState.Y);
 
                 // Do something with the mouse position
                 // For example, draw a circle at the mouse position
@@ -85,7 +85,11 @@ namespace ProjectReal
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            _currentStage.Draw(_spriteBatch);
+            _spriteBatch = new SpriteBatch(GraphicsDevice);
+            
+            _spriteBatch.Begin();
+            _currentStage.Draw( _spriteBatch);
+            _spriteBatch.End();
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);

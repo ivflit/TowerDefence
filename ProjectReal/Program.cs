@@ -7,7 +7,7 @@ namespace ProjectReal
         [STAThread]
         static void Main()
         {
-            using (var game = new Game())
+            using (var game = new Game1())
                 game.Run();
         }
     }

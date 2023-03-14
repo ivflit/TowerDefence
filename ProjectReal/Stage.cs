@@ -32,7 +32,10 @@ namespace ProjectReal
 
         }
 
-     
+     private void InstantiateMapEnemy()
+        {
+            //MapEnemy newEnemy = new MapEnemy(spawnertile
+        }
 
         private void LoadEnemyTypes()
         {
@@ -51,7 +54,7 @@ namespace ProjectReal
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            _map.Draw(ref spriteBatch);
+            _map.Draw(spriteBatch);
         }
 
     }
