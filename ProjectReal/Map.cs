@@ -146,6 +146,7 @@ namespace ProjectReal
             _mapXAmount = _symbolMap.GetUpperBound(0) + 1;
             _mapYAmount = _symbolMap.GetUpperBound(1) + 1;
             int YvalueForSpawner = rnd.Next(_mapYAmount);
+            int YvalueForEndTile = rnd.Next(_mapYAmount);
             _map = new Tile[_mapXAmount, _mapYAmount];
             //loop through symbol map, set each symbol to a tile on the map/
             for (int y = 0; y < _mapYAmount; y++)
@@ -169,6 +170,7 @@ namespace ProjectReal
             }
            
                 _map[0, YvalueForSpawner]._isSpawner = true;
+            _map[_mapXAmount - 1,YvalueForEndTile]._isEndTile = true;
            
         }
         public void Draw(SpriteBatch spriteBatch) //draw the map
@@ -178,7 +180,7 @@ namespace ProjectReal
             {
                 for (int x = 0; x < _mapXAmount; x++)
                 {
-                    if (_map[x, y]._isSpawner == true) 
+                    if (_map[x, y]._isSpawner == true || _map[x,y]._isEndTile == true) 
                     {
                         spriteBatch.Draw(_map[x, y]._terrain._texture, new Vector2(x * _tileSize, y * _tileSize), Color.Purple);
                     }
