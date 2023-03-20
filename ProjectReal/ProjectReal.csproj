@@ -27,6 +27,7 @@
     <None Remove="Content\towerDefense_tile252.png" />
     <None Remove="Content\towerDefense_tile272.png" />
     <None Remove="Content\towerDefense_tile296.png" />
+    <None Remove="Enemies.txt" />
     <None Remove="Icon.ico" />
     <None Remove="Icon.bmp" />
     <None Remove="Leaderboard.txt" />
@@ -96,6 +97,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\towerDefense_tile296.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Enemies.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Leaderboard.txt">

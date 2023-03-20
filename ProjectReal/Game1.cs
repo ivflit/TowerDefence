@@ -76,7 +76,7 @@ namespace ProjectReal
                 //_spriteBatch.End();
             }
 
-
+            _currentStage.Update(gameTime);
             // TODO: Add your update logic here
 
             base.Update(gameTime);

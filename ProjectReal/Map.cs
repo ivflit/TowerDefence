@@ -8,18 +8,26 @@ namespace ProjectReal
 {
     class Map
     {
+        
+        public Node _startNode { get; set; }
+        public Node _endNode;
+        public Node[,] _listOfNodes { get; set; }
+        Node _tileNode;
         Tile[,] _map;
         char[,] _symbolMap;
         Dictionary<char, Terrain> _symbolToTerrainDictionary;
         List<Tile> _tiles = new List<Tile>();
         int _tileSize = 64;
-        int _mapXAmount;
-        int _mapYAmount;
+       public int _mapXAmount { get; set; }   
+
+       public  int _mapYAmount { get; set; }
+        public List<Vector2> _spawnerPositions { get; set; }
         public Map()
         {
             LoadTileMap();
             LoadTerrain();//calls createTile
             CreateMap();
+            GetNeighborNodes();
             //tileSize = 32;
             //Vector2 tilePosition;
             //Vector2 tileCentre = new Vector2(_tileSize / 2, _tileSize / 2);
@@ -29,6 +37,8 @@ namespace ProjectReal
 
         private void LoadTileMap()//loading tilemap.txt into _map
         {
+            Random rnd = new Random();
+          
             char[,] fileMap = new char[20, 20];
             String lineInput;
             string[] splitLine;
@@ -70,11 +80,17 @@ namespace ProjectReal
                 //Console.WriteLine(e.Message);
             }
             rowAmount = rowCounter - 1; //this allows us to get the correct amount of rows
+            int YvalueForSpawner = rnd.Next(rowAmount);
+            int YvalueForEndTile = rnd.Next(rowAmount);
             _symbolMap = new char[columnAmount, rowAmount];
             for (int yAxis = 0; yAxis < rowAmount; yAxis++)
             {
                 for (int x = 0; x < columnAmount; x++)
                 {
+                    if ((yAxis == YvalueForSpawner && x == 0) || (yAxis == YvalueForEndTile  && x == columnAmount-1) )
+                    {
+                        fileMap[x, yAxis] = 'p';
+                    }
                     _symbolMap[x, yAxis] = fileMap[x, yAxis];
                 }
 
@@ -139,40 +155,105 @@ namespace ProjectReal
         private void CreateMap()
         {
             
-            Random rnd = new Random();
-            
-            
-            
+           
+
+
             _mapXAmount = _symbolMap.GetUpperBound(0) + 1;
             _mapYAmount = _symbolMap.GetUpperBound(1) + 1;
-            int YvalueForSpawner = rnd.Next(_mapYAmount);
-            int YvalueForEndTile = rnd.Next(_mapYAmount);
+            _spawnerPositions = new List<Vector2>();
+            int portalCount = 0;
             _map = new Tile[_mapXAmount, _mapYAmount];
+            _listOfNodes = new Node[_mapXAmount, _mapYAmount];
             //loop through symbol map, set each symbol to a tile on the map/
             for (int y = 0; y < _mapYAmount; y++)
             {
-                for (int x = 0; x < _mapXAmount; x++)
+                for (int x = 0; x < _mapXAmount; x++) //loop through each tile on the map
                 {
-                    _symbolToTerrainDictionary.TryGetValue(_symbolMap[x, y], out Terrain terrainInDictionary);
+                    _symbolToTerrainDictionary.TryGetValue(_symbolMap[x, y], out Terrain terrainInDictionary); //get the terrain of the symbol
                     for (int i = 0; i < _tiles.Count; i++)
                     {
                         if (_tiles[i]._terrain._name == terrainInDictionary._name)
                         {
-                            Tile mapTile = new Tile(_tiles[i]._terrain, _tiles[i]._isSpawner, _tiles[i]._isEndTile);
-                            _map[x, y] = mapTile;
-                           
+                            Tile mapTile = new Tile(_tiles[i]._terrain, _tiles[i]._isSpawner, _tiles[i]._isEndTile); //create a new tile based on the tile properties
+                            if (terrainInDictionary._name == "portal")
+                            {
+                                //portalCount++;
+                                if (x == 0)
+                                {
+                                    mapTile._isSpawner = true;
+                                    _spawnerPositions.Add(new Vector2(x * _tileSize, y * _tileSize));
+                                   //_spawnerPositions.Add(new Vector2(x, y));
+                                     _startNode = new Node(x, y,true, mapTile._terrain._movementModifier);
+                                    
+                                }
+
+                                else
+                                {
+                                    mapTile._isEndTile = true;
+                                    
+                                    _endNode = new Node(x, y, true,mapTile._terrain._movementModifier);
+                                }
+
+                            }
+                            _map[x, y] = mapTile;                            
+                            _tileNode = new Node(x, y, true, mapTile._terrain._movementModifier);//make node
+                            
+                            _listOfNodes[x, y] = _tileNode; //make node map
+                            
                         }
                     }
 
                 }
 
-
             }
-           
-                _map[0, YvalueForSpawner]._isSpawner = true;
-            _map[_mapXAmount - 1,YvalueForEndTile]._isEndTile = true;
+                         
            
         }
+        private void GetNeighborNodes()
+            {
+
+            int noneigh = 0;
+            for (int y = 0; y < _listOfNodes.GetUpperBound(1)+1; y++)
+            {
+                for (int x = 0; x < _listOfNodes.GetUpperBound(0) +1; x++) //loop through the array of nodes, add neighbours to each node given the x and y of each node
+                {
+                    List<Node> neighborNodes = new List<Node>();
+                    
+                    // Check the node above
+                    if (y > 0)
+                    {
+                        neighborNodes.Add(_listOfNodes[x, y - 1]);
+                    }
+
+                    //int ylength = _listOfNodes.GetLength(1);
+                    // Check the node below
+                    if (y < _listOfNodes.GetLength(1)-1)
+                    {
+                        neighborNodes.Add(_listOfNodes[x, y + 1]);
+                    }
+
+                    // Check the node to the left
+                    if (x > 0)
+                    {
+                        neighborNodes.Add(_listOfNodes[x - 1, y]);
+                    }
+
+                    // Check the node to the right
+                    if (x < _listOfNodes.GetLength(0)-1 )
+                    {
+                        neighborNodes.Add(_listOfNodes[x + 1, y]);
+                    }
+                    
+                    if (neighborNodes.Count ==0)
+                    {
+                        noneigh++;
+                    }
+                    _listOfNodes[x, y]._neighbors.AddRange(neighborNodes); //that nodes neighbours are the list we just created
+                }
+            }
+                      
+        }
+       
         public void Draw(SpriteBatch spriteBatch) //draw the map
         {
 

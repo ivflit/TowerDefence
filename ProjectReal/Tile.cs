@@ -12,6 +12,7 @@ namespace ProjectReal
 {
     class Tile
     {
+
         public Tile(Terrain terrain, bool isSpawner, bool isEndTile)
         {
             _terrain = terrain;

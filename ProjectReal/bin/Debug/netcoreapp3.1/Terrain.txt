@@ -2,3 +2,4 @@
 sand,towerDefense_tile111,0.5,true,s
 rock,towerDefense_tile088,1,true,r
 mud,towerDefense_tile061,0.2,false,m
+portal,Portal,0,false,p

@@ -1,4 +1,5 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"C:/Users/ivanf/source/repos/ProjectReal/ProjectReal/Content/Portal.jpg","C:/Users/ivanf/source/repos/ProjectReal/ProjectReal/Content/bin/DesktopGL/Content/Portal.xnb","TextureProcessor","Texture2DContent",3661,16469,0.2343888
 "C:/Users/ivanf/source/repos/ProjectReal/ProjectReal/Content/towerDefense_tile038.png","C:/Users/ivanf/source/repos/ProjectReal/ProjectReal/Content/bin/DesktopGL/Content/towerDefense_tile038.xnb","TextureProcessor","Texture2DContent",1207,16469,0.2680077
 "C:/Users/ivanf/source/repos/ProjectReal/ProjectReal/Content/towerDefense_tile061.png","C:/Users/ivanf/source/repos/ProjectReal/ProjectReal/Content/bin/DesktopGL/Content/towerDefense_tile061.xnb","TextureProcessor","Texture2DContent",1206,16469,0.0058293
 "C:/Users/ivanf/source/repos/ProjectReal/ProjectReal/Content/towerDefense_tile088.png","C:/Users/ivanf/source/repos/ProjectReal/ProjectReal/Content/bin/DesktopGL/Content/towerDefense_tile088.xnb","TextureProcessor","Texture2DContent",2521,16469,0.0065023

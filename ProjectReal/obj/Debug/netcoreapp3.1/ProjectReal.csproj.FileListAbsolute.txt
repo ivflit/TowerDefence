@@ -8,6 +8,7 @@ C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Cont
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Content\grassTexture.xnb
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Content\Mud.xnb
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Content\mudTexture.xnb
+C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Content\Portal.xnb
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Content\Rock.xnb
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Content\Rocket.xnb
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Content\RocketTower.xnb
@@ -51,6 +52,7 @@ C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Cont
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Content\towerDefense_tile252.png
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Content\towerDefense_tile272.png
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Content\towerDefense_tile296.png
+C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Enemies.txt
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Leaderboard.txt
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Projectile.txt
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Terrain.txt

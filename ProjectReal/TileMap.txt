@@ -1,12 +1,12 @@
-﻿r,g,s,s,s,s,m,m,m,g
-r,g,m,m,m,s,s,s,m,r
+﻿r,g,g,g,g,g,g,g,g,g
 r,g,g,g,g,g,g,g,g,g
-r,g,g,g,g,g,g,g,g,g
-r,g,g,g,g,g,g,g,g,g
-r,g,g,g,g,g,g,g,r,r
-r,r,r,r,r,r,r,r,r,g
-r,r,g,g,g,g,g,g,g,g
-r,r,g,g,g,g,g,g,g,g
-r,g,g,g,g,g,g,g,g,g
+r,r,r,r,g,g,g,g,g,g
+s,m,m,r,g,g,g,g,g,g
+s,m,m,r,r,r,r,g,g,g
+s,s,s,s,s,s,r,r,g,g
+g,g,g,g,g,g,g,r,g,g
+g,g,g,g,g,g,g,r,g,g
+g,g,g,g,g,g,g,r,g,g
+g,g,g,g,g,g,g,r,r,r
 
  
