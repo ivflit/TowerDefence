@@ -251,7 +251,7 @@ namespace ProjectReal
                     _listOfNodes[x, y]._neighbors.AddRange(neighborNodes); //that nodes neighbours are the list we just created
                 }
             }
-                      
+            
         }
        
         public void Draw(SpriteBatch spriteBatch) //draw the map

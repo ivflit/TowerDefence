@@ -81,14 +81,18 @@ namespace ProjectReal
 
                     if (_closedSet.Contains(neighbor) == false & neighbor._wall == false)
                     {
-                       
-                        float TempG = Current._gCost + 1;
+
+                        // float TempG = Current._gCost + 1;
+                        float TempG = Current._gCost + GetDistance(Current, endNode);
                         bool newpath = false;
                         if (_openSet.Contains(neighbor) == true)
                         {
+
                             if (TempG < neighbor._gCost)
                             {
                                 neighbor._gCost = TempG;
+                                neighbor._hCost = GetDistance(neighbor, endNode);//
+                                neighbor._fCost = neighbor._gCost + neighbor._hCost;         
                                 newpath = true;
                             }
                         }
@@ -111,10 +115,24 @@ namespace ProjectReal
                 }
             }
 
-            return _path;
+            return null;
         }
 
-       
+        private static int GetDistance(Node nodeA, Node nodeB)
+        {
+            int distX = Math.Abs(nodeA._x - nodeB._x);
+            int distY = Math.Abs(nodeA._y - nodeB._y);
+
+            if (distX > distY)
+            {
+                return 14 * distY + 10 * (distX - distY);
+            }
+            else
+            {
+                return 14 * distX + 10 * (distY - distX);
+            }
+        }
+
         private Node GetLowestFCostNode(List<Node> nodeList)
         {
             Node lowestFCostNode = nodeList[0];
@@ -133,40 +151,3 @@ namespace ProjectReal
 }
     
 
-
-
-
-
-
-//private List<Node> GeneratePath(Node endNode)
-//        {
-//            List<Node> path = new List<Node>();
-//            Node currentNode = endNode;
-
-//            while (currentNode != null)
-//            {
-//                path.Add(currentNode);
-//                currentNode = currentNode._parent;
-//            }
-
-//            path.Reverse();
-//            return path;
-//        }
-
-//        private float CalculateDistance(Node nodeA, Node nodeB)
-//        {
-
-//            float distanceX = MathF.Abs(nodeA._x - nodeB._x);
-//            float distanceY = MathF.Abs(nodeA._y - nodeB._y);
-
-//            if (distanceX > distanceY)
-//            {
-//                return 1.4f * distanceY + 1f * (distanceX - distanceY);
-//            }
-//            else
-//            {
-//                return 1.4f * distanceX + 1f * (distanceY - distanceX);
-//            }
-//        }
-
- 
