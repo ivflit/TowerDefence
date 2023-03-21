@@ -1,0 +1,2 @@
+﻿rock,towerDefense_tile137,100
+bush,towerDefense_tile130,50

@@ -15,6 +15,8 @@
     <None Remove="Content\towerDefense_tile061.png" />
     <None Remove="Content\towerDefense_tile088.png" />
     <None Remove="Content\towerDefense_tile111.png" />
+    <None Remove="Content\towerDefense_tile130.png" />
+    <None Remove="Content\towerDefense_tile137.png" />
     <None Remove="Content\towerDefense_tile181.png" />
     <None Remove="Content\towerDefense_tile204.png" />
     <None Remove="Content\towerDefense_tile226.png" />
@@ -31,6 +33,7 @@
     <None Remove="Icon.ico" />
     <None Remove="Icon.bmp" />
     <None Remove="Leaderboard.txt" />
+    <None Remove="Obstacles.txt" />
     <None Remove="Projectile.txt" />
     <None Remove="Terrain.txt" />
     <None Remove="TileMap.txt" />
@@ -61,6 +64,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\towerDefense_tile111.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\towerDefense_tile130.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\towerDefense_tile137.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\towerDefense_tile181.png">
@@ -103,6 +112,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Leaderboard.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Obstacles.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Projectile.txt">

@@ -24,6 +24,7 @@ namespace ProjectReal
         public bool _isSpawner { get; set; }
         public bool _isEndTile { get; set; }
 
+        public Obstacle _obstacle { get; set; }
         public MapTower _mapTower { get; set; }
 
         public static void loadContent()

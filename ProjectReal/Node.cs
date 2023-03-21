@@ -12,7 +12,7 @@ namespace ProjectReal
         public bool _wall;
         public List<Node> _neighbors { get; set; }
         public Node _cameFrom;
-        public float _movementModifier;
+        public float _movementModifier { get; set; }
         public float _gCost;
         public float _hCost;
         public float _fCost;

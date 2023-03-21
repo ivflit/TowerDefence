@@ -4,10 +4,13 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
+    <File>C:/Users/ivanf/source/repos/ProjectReal/ProjectReal/Content/Portal.jpg</File>
     <File>C:/Users/ivanf/source/repos/ProjectReal/ProjectReal/Content/towerDefense_tile038.png</File>
     <File>C:/Users/ivanf/source/repos/ProjectReal/ProjectReal/Content/towerDefense_tile061.png</File>
     <File>C:/Users/ivanf/source/repos/ProjectReal/ProjectReal/Content/towerDefense_tile088.png</File>
     <File>C:/Users/ivanf/source/repos/ProjectReal/ProjectReal/Content/towerDefense_tile111.png</File>
+    <File>C:/Users/ivanf/source/repos/ProjectReal/ProjectReal/Content/towerDefense_tile130.png</File>
+    <File>C:/Users/ivanf/source/repos/ProjectReal/ProjectReal/Content/towerDefense_tile137.png</File>
     <File>C:/Users/ivanf/source/repos/ProjectReal/ProjectReal/Content/towerDefense_tile181.png</File>
     <File>C:/Users/ivanf/source/repos/ProjectReal/ProjectReal/Content/towerDefense_tile204.png</File>
     <File>C:/Users/ivanf/source/repos/ProjectReal/ProjectReal/Content/towerDefense_tile226.png</File>
@@ -22,6 +25,9 @@
     <File>C:/Users/ivanf/source/repos/ProjectReal/ProjectReal/Content/towerDefense_tile296.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

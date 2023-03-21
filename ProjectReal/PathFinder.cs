@@ -29,6 +29,7 @@ namespace ProjectReal
         public List<Node> FindPath(Node startNode, Node endNode)
         {
             _openSet = new List<Node>();             //Openset is a list of all the cells that we have checked so we add startNode since that is the first point we check
+
             Node node = _nodeMap[startNode._x, startNode._y];
             _openSet.Add(node);
            
@@ -79,27 +80,28 @@ namespace ProjectReal
                 {
                     Node neighbor = ListOfNeighbors[i];
 
-                    if (_closedSet.Contains(neighbor) == false & neighbor._wall == false)
+                    if (_closedSet.Contains(neighbor) == false & neighbor._wall == false & neighbor._walkable==true)
                     {
 
                         // float TempG = Current._gCost + 1;
-                        float TempG = Current._gCost + GetDistance(Current, endNode);
+                        float TempG = ((Current._gCost + GetDistance(Current, endNode)) / Current._movementModifier);
                         bool newpath = false;
                         if (_openSet.Contains(neighbor) == true)
                         {
 
                             if (TempG < neighbor._gCost)
                             {
-                                neighbor._gCost = TempG;
-                                neighbor._hCost = GetDistance(neighbor, endNode);//
-                                neighbor._fCost = neighbor._gCost + neighbor._hCost;         
-                                newpath = true;
+                                //neighbor._gCost = TempG;
+                                //neighbor._hCost = GetDistance(neighbor, endNode);
+                                //neighbor._fCost = ((neighbor._gCost + neighbor._hCost));         
+                                //newpath = true;
                             }
                         }
                         else
                         {
 
-                            neighbor._gCost = TempG;
+                            neighbor._gCost = GetDistance(neighbor,endNode)/neighbor._movementModifier;
+                            neighbor._fCost = ((neighbor._gCost + neighbor._hCost));
                             newpath = true;
                             _openSet.Add(neighbor);
                             

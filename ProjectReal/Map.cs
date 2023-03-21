@@ -11,11 +11,13 @@ namespace ProjectReal
         
         public Node _startNode { get; set; }
         public Node _endNode;
-        public Node[,] _listOfNodes { get; set; }
+        public Node[,] _nodeMap { get; set; }
         Node _tileNode;
         Tile[,] _map;
         char[,] _symbolMap;
         Dictionary<char, Terrain> _symbolToTerrainDictionary;
+        Dictionary<string,Obstacle> _nameToObstacleDictionary;
+        List<string> _obstacleNames;
         List<Tile> _tiles = new List<Tile>();
         int _tileSize = 64;
        public int _mapXAmount { get; set; }   
@@ -26,7 +28,9 @@ namespace ProjectReal
         {
             LoadTileMap();
             LoadTerrain();//calls createTile
+            LoadObstacles();
             CreateMap();
+            spawnObstacles();
             GetNeighborNodes();
             //tileSize = 32;
             //Vector2 tilePosition;
@@ -38,7 +42,7 @@ namespace ProjectReal
         private void LoadTileMap()//loading tilemap.txt into _map
         {
             Random rnd = new Random();
-          
+            
             char[,] fileMap = new char[20, 20];
             String lineInput;
             string[] splitLine;
@@ -89,14 +93,79 @@ namespace ProjectReal
                 {
                     if ((yAxis == YvalueForSpawner && x == 0) || (yAxis == YvalueForEndTile  && x == columnAmount-1) )
                     {
+                   //if ((yAxis==4 && x ==0) || (yAxis==4 && x ==9)) //GET RID TO MAKE IT RANDOM
+                    //{
                         fileMap[x, yAxis] = 'p';
+                    //}
+                        
                     }
                     _symbolMap[x, yAxis] = fileMap[x, yAxis];
                 }
 
             }
         }
+        private void LoadObstacles()//loading tilemap.txt into _map
+        {
+          _obstacleNames = new List<string>();
+            _nameToObstacleDictionary = new Dictionary<string, Obstacle>();
+            String lineInput;
+            string[] splitLine;
+            string name;
+            string fileName;
+            int costToRemove;
+            try
+            {
+                using (System.IO.StreamReader ReaderForTileMap = new System.IO.StreamReader("Obstacles.txt"))
+                {
 
+
+                    while (ReaderForTileMap.EndOfStream == false)
+                    {
+
+                        Obstacle obstacle;
+                        lineInput = ReaderForTileMap.ReadLine();
+                        splitLine = lineInput.Split(",");
+                        name = splitLine[0];
+                        fileName = splitLine[1];
+                        costToRemove = Convert.ToInt16(splitLine[2]);
+                        Texture2D obstacleTexture = Game1._graphicsloader.Load<Texture2D>(fileName);
+                        _obstacleNames.Add(name); 
+                        obstacle = new Obstacle(name, costToRemove, obstacleTexture);
+                        _nameToObstacleDictionary.Add(name, obstacle);
+
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                //Console.WriteLine("The file could not be read");
+                //Console.WriteLine(e.Message);
+            }
+           
+        }
+        private void spawnObstacles()
+        {
+            Random rnd = new Random();
+            Tile randomTile;
+            int XvalueForSpawner;
+            int YvalueForSpawner;
+            int amountOfObstacles = 15;
+            for (int i = 0; i < amountOfObstacles +1; i++)
+            { 
+                int ObstacleIndex= rnd.Next(_obstacleNames.Count);
+                do
+                {
+                     XvalueForSpawner = rnd.Next(_mapXAmount);
+                     YvalueForSpawner = rnd.Next(_mapYAmount);
+                     randomTile = _map[XvalueForSpawner, YvalueForSpawner];
+                } while (_symbolMap[XvalueForSpawner,YvalueForSpawner] == 'p' || randomTile._obstacle !=null);
+                
+                string name = _obstacleNames[ObstacleIndex];
+                _nameToObstacleDictionary.TryGetValue(name, out Obstacle obstacle);
+                _map[XvalueForSpawner, YvalueForSpawner]._obstacle = obstacle;
+                _nodeMap[XvalueForSpawner, YvalueForSpawner]._walkable = false;
+            }
+        }
         private void LoadTerrain() //loading from terrain.txt and making new terrain based on the content of the file
         {
             String lineInput;
@@ -161,9 +230,9 @@ namespace ProjectReal
             _mapXAmount = _symbolMap.GetUpperBound(0) + 1;
             _mapYAmount = _symbolMap.GetUpperBound(1) + 1;
             _spawnerPositions = new List<Vector2>();
-            int portalCount = 0;
+            
             _map = new Tile[_mapXAmount, _mapYAmount];
-            _listOfNodes = new Node[_mapXAmount, _mapYAmount];
+            _nodeMap = new Node[_mapXAmount, _mapYAmount];
             //loop through symbol map, set each symbol to a tile on the map/
             for (int y = 0; y < _mapYAmount; y++)
             {
@@ -198,7 +267,7 @@ namespace ProjectReal
                             _map[x, y] = mapTile;                            
                             _tileNode = new Node(x, y, true, mapTile._terrain._movementModifier);//make node
                             
-                            _listOfNodes[x, y] = _tileNode; //make node map
+                            _nodeMap[x, y] = _tileNode; //make node map
                             
                         }
                     }
@@ -213,42 +282,42 @@ namespace ProjectReal
             {
 
             int noneigh = 0;
-            for (int y = 0; y < _listOfNodes.GetUpperBound(1)+1; y++)
+            for (int y = 0; y < _nodeMap.GetUpperBound(1)+1; y++)
             {
-                for (int x = 0; x < _listOfNodes.GetUpperBound(0) +1; x++) //loop through the array of nodes, add neighbours to each node given the x and y of each node
+                for (int x = 0; x < _nodeMap.GetUpperBound(0) +1; x++) //loop through the array of nodes, add neighbours to each node given the x and y of each node
                 {
                     List<Node> neighborNodes = new List<Node>();
                     
                     // Check the node above
                     if (y > 0)
                     {
-                        neighborNodes.Add(_listOfNodes[x, y - 1]);
+                        neighborNodes.Add(_nodeMap[x, y - 1]);
                     }
 
                     //int ylength = _listOfNodes.GetLength(1);
                     // Check the node below
-                    if (y < _listOfNodes.GetLength(1)-1)
+                    if (y < _nodeMap.GetLength(1)-1)
                     {
-                        neighborNodes.Add(_listOfNodes[x, y + 1]);
+                        neighborNodes.Add(_nodeMap[x, y + 1]);
                     }
 
                     // Check the node to the left
                     if (x > 0)
                     {
-                        neighborNodes.Add(_listOfNodes[x - 1, y]);
+                        neighborNodes.Add(_nodeMap[x - 1, y]);
                     }
 
                     // Check the node to the right
-                    if (x < _listOfNodes.GetLength(0)-1 )
+                    if (x < _nodeMap.GetLength(0)-1 )
                     {
-                        neighborNodes.Add(_listOfNodes[x + 1, y]);
+                        neighborNodes.Add(_nodeMap[x + 1, y]);
                     }
                     
                     if (neighborNodes.Count ==0)
                     {
                         noneigh++;
                     }
-                    _listOfNodes[x, y]._neighbors.AddRange(neighborNodes); //that nodes neighbours are the list we just created
+                    _nodeMap[x, y]._neighbors.AddRange(neighborNodes); //that nodes neighbours are the list we just created
                 }
             }
             
@@ -269,7 +338,10 @@ namespace ProjectReal
                     {
                         spriteBatch.Draw(_map[x, y]._terrain._texture, new Vector2(x * _tileSize, y * _tileSize), Color.White);
                     }
-                    
+                    if (_map[x, y]._obstacle != null)
+                    {
+                        spriteBatch.Draw(_map[x, y]._obstacle._texture, new Vector2(x * _tileSize, y * _tileSize), Color.White);
+                    }
 
                 }
 

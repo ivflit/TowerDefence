@@ -31,7 +31,7 @@ namespace ProjectReal
             _tileSize = 64;
             _mapEnemies = new List<MapEnemy>(); 
             _map = new Map();
-            _pathfinder = new Pathfinder(_map._listOfNodes);
+            _pathfinder = new Pathfinder(_map._nodeMap);
             LoadEnemyTypes();
             InstantiateMapEnemy();
             
@@ -141,6 +141,7 @@ namespace ProjectReal
             for (int i = 0; i < _mapEnemies.Count; i++) //loop through the list of enemies
             {
                 _mapEnemies[i].FollowPath(gameTime);
+                _mapEnemies[i]._currentNode = _map._nodeMap[_mapEnemies[i]._currentNode._x, _mapEnemies[i]._currentNode._y];
             }
         }
 

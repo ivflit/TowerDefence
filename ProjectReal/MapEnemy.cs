@@ -27,6 +27,7 @@ namespace ProjectReal
         }
         public void FollowPath(GameTime gameTime)
         {
+            float movementSpeed = 0;
             if (_path != null && _path.Count > 0)
             {
                 // Move the sprite towards the next node in the path
@@ -37,11 +38,20 @@ namespace ProjectReal
              // _position = _position / 64;
                 direction = Vector2.Normalize(target*64 - _position);
                System.Diagnostics.Debug.WriteLine("{0},{1}",direction.X,direction.Y);
-                float speed = _enemyType._movementSpeed; // adjust this value to control the sprite's speed
+                if (_currentNode._movementModifier ==0)
+                {
+                    movementSpeed = 1;
+                }
+                else
+                {
+                    movementSpeed = _currentNode._movementModifier;
+                }
+                float speed = _enemyType._movementSpeed * movementSpeed; // adjust this value to control the sprite's speed
                 _position += direction * speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-                //_position = Vector2.Lerp(target, _position, speed);
-               _currentNode._x = Convert.ToInt16(_position.X );
-               _currentNode._y = Convert.ToInt16(_position.Y);
+                
+               _currentNode._x = Convert.ToInt16(Math.Round(_position.X / 64));
+               _currentNode._y = Convert.ToInt16(Math.Round(_position.Y / 64));
+                
                 // If we're close enough to the target node, remove it from the path
                 if (Vector2.Distance(_position, target*64) < 1)
                 {

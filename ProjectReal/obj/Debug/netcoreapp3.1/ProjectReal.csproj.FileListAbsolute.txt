@@ -81,3 +81,8 @@ C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\obj\Debug\netcoreapp3.1\Proj
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\obj\Debug\netcoreapp3.1\ProjectReal.dll
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\obj\Debug\netcoreapp3.1\ProjectReal.pdb
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\obj\Debug\netcoreapp3.1\ProjectReal.genruntimeconfig.cache
+C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Obstacles.txt
+C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Content\towerDefense_tile130.xnb
+C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Content\towerDefense_tile137.xnb
+C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Content\towerDefense_tile130.png
+C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Content\towerDefense_tile137.png
