@@ -37,7 +37,7 @@ namespace ProjectReal
              
              // _position = _position / 64;
                 direction = Vector2.Normalize(target*64 - _position);
-               System.Diagnostics.Debug.WriteLine("{0},{1}",direction.X,direction.Y);
+              
                 if (_currentNode._movementModifier ==0)
                 {
                     movementSpeed = 1;

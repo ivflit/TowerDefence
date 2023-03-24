@@ -23,6 +23,8 @@ C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Cont
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Content\towerDefense_tile061.xnb
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Content\towerDefense_tile088.xnb
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Content\towerDefense_tile111.xnb
+C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Content\towerDefense_tile130.xnb
+C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Content\towerDefense_tile137.xnb
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Content\towerDefense_tile181.xnb
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Content\towerDefense_tile204.xnb
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Content\towerDefense_tile226.xnb
@@ -40,6 +42,8 @@ C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Cont
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Content\towerDefense_tile061.png
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Content\towerDefense_tile088.png
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Content\towerDefense_tile111.png
+C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Content\towerDefense_tile130.png
+C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Content\towerDefense_tile137.png
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Content\towerDefense_tile181.png
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Content\towerDefense_tile204.png
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Content\towerDefense_tile226.png
@@ -54,6 +58,7 @@ C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Cont
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Content\towerDefense_tile296.png
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Enemies.txt
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Leaderboard.txt
+C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Obstacles.txt
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Projectile.txt
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Terrain.txt
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\TileMap.txt
@@ -81,8 +86,4 @@ C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\obj\Debug\netcoreapp3.1\Proj
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\obj\Debug\netcoreapp3.1\ProjectReal.dll
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\obj\Debug\netcoreapp3.1\ProjectReal.pdb
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\obj\Debug\netcoreapp3.1\ProjectReal.genruntimeconfig.cache
-C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Obstacles.txt
-C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Content\towerDefense_tile130.xnb
-C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Content\towerDefense_tile137.xnb
-C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Content\towerDefense_tile130.png
-C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Content\towerDefense_tile137.png
+C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Content\Font.xnb

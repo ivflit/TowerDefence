@@ -5,11 +5,13 @@ using MonoGame;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework;
+using System.ComponentModel.Design;
 
 namespace ProjectReal
 {
     public class Stage //the place where our game takes place; map players enemies will go here
     {
+        private Input _mouse = new Input();
         private Pathfinder _pathfinder;
         private int _tileSize;
         private Dictionary<string, EnemyType> _nameOfEnemyToType;
@@ -18,14 +20,20 @@ namespace ProjectReal
         private int _frameCounter;
         private Map _map;
         private Texture2D _interfaceTexture;
+      
         private List<TowerType> _towerTypes;
+        private List<string> _towerTypeNames;
         private List<string> _enemyTypeNames;
         private List<MapEnemy> _mapEnemies;
+     
+        
         private int _selectedBuidlingIndex;
         private Point _mouseTilePosition;
         private bool _gameOver;
         private MapEnemy _mapEnemy;
-       
+        private Shop _shop;
+        private Dictionary<string, Projectile> _nameOfProjectilesToProjectile { get; set; }
+        private Dictionary<string, TowerType> _nameOfTowerToTower { get; set; }
         public Stage()
         {
             _tileSize = 64;
@@ -33,8 +41,10 @@ namespace ProjectReal
             _map = new Map();
             _pathfinder = new Pathfinder(_map._nodeMap);
             LoadEnemyTypes();
+            LoadProjectiles();
+            LoadTowerTypes();
             InstantiateMapEnemy();
-            
+            _shop = new Shop(_towerTypes, _towerTypeNames, _nameOfTowerToTower, _map._mapXAmount);
             
                 
         }
@@ -105,11 +115,105 @@ namespace ProjectReal
         }
 
 
-        private void LoadBuildingTypes()
-        { 
-        
+        private void LoadProjectiles()
+        {
+            String lineInput;
+            string name;
+            string fileName;
+            int speed;
+            int damage;
+            try
+            {
+                using (System.IO.StreamReader ReaderForTileMap = new System.IO.StreamReader("Tower.txt"))
+                {
+
+
+                    while (ReaderForTileMap.EndOfStream == false)
+                    {
+                        Projectile projectile;
+                        string[] splitLine;
+                        lineInput = ReaderForTileMap.ReadLine().ToLower();
+                        splitLine = lineInput.Split(",");
+                        name = splitLine[0];
+                        fileName = splitLine[1];
+                        damage = Convert.ToInt32(splitLine[2]);
+                        speed = Convert.ToInt32(splitLine[3]);
+                        Texture2D ProjectileTexture = Game1._graphicsloader.Load<Texture2D>(fileName);
+                        //MAKE HITBOX FOR PROJECTILE WHEN IT GETS A POSITION
+
+                        projectile = new Projectile(ProjectileTexture, name, speed, damage);
+
+                        _nameOfProjectilesToProjectile.Add(name, projectile);
+
+
+
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("The file could not be read");
+                Console.WriteLine(e.Message);
+            }
         }
-    
+        
+        private void LoadTowerTypes()
+        {
+            _nameOfTowerToTower = new Dictionary<string, TowerType>();
+            _towerTypes = new List<TowerType>();
+            _towerTypeNames = new List<string>();
+            _nameOfProjectilesToProjectile = new Dictionary<string, Projectile>();
+            String lineInput;
+            string name;
+            string fileName;
+            String projectileType;
+            int cost;
+            string descriptionOfTower;
+            int upgradeOneCost;
+            int upgradeTwoCost;
+            int health;
+            try
+            {
+                using (System.IO.StreamReader ReaderForTileMap = new System.IO.StreamReader("Towers.txt"))
+                {
+
+
+                    while (ReaderForTileMap.EndOfStream == false)
+                    {
+                        TowerType towerType;
+                        
+                        string[] splitLine;
+                        lineInput = ReaderForTileMap.ReadLine().ToLower();
+                        splitLine = lineInput.Split(",");
+                        name = splitLine[0];
+                        fileName = splitLine[1];
+                        projectileType = splitLine[2];
+                        cost = Convert.ToInt32(splitLine[3]);
+                        descriptionOfTower = splitLine[4];
+                        upgradeOneCost = Convert.ToInt32(splitLine[5]);
+                        upgradeTwoCost = Convert.ToInt32(splitLine[6]);
+                        health = Convert.ToInt32(splitLine[7]);
+                        Texture2D TowerTopTexture = Game1._graphicsloader.Load<Texture2D>(fileName);
+                        Texture2D TowerBottomTexture = Game1._graphicsloader.Load<Texture2D>("towerDefense_tile181");
+                       
+                        _nameOfProjectilesToProjectile.TryGetValue(projectileType, out Projectile projectile);
+                        towerType = new TowerType(name, upgradeOneCost, upgradeTwoCost, TowerTopTexture, TowerBottomTexture, health, cost, descriptionOfTower, projectile);
+                        _towerTypes.Add(towerType);
+                        _towerTypeNames.Add(name);
+                        _nameOfTowerToTower.Add(name, towerType);
+
+
+
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("The file could not be read");
+                Console.WriteLine(e.Message);
+            }
+        }
+
         private void InstantiatePathForEnemy() //Gets node path from pathfinder, converts to vector path and inserts into the map enemy
         {
             
@@ -138,6 +242,54 @@ namespace ProjectReal
             // {
             // InstantiatePathForEnemy();
             //}
+            _mouse.Update();
+            
+            Vector2 MousePosition = _mouse.GetMousePosition();
+            System.Diagnostics.Debug.WriteLine("{0},{1}", MousePosition.X,MousePosition.Y);
+
+            if (_mouse.WasLeftButtonClicked())
+            {
+                
+                    if (_shop._selectedTower == null) //if there is no selected tower
+                    {
+                      for (int i = 0; i < _shop._towerGridHitboxes.Count; i++)
+                      {
+                        if (_shop._towerGridHitboxes[i].Contains(MousePosition.X, MousePosition.Y))
+                        {
+                            int x = ((_shop._towerGridHitboxes[i].X + _shop._towerGrid[0, 0]._textureBottom.Width / 2) / _tileSize) - _shop._towerSectionOffsetX;
+                            int y = (_shop._towerGridHitboxes[i].Y + _shop._towerGrid[0, 0]._textureBottom.Height / 2) / _tileSize;
+                            _shop._selectedTower = _shop._towerGrid[x, y];
+                        }
+                      }
+                    }
+                    else
+                    {
+                    bool towerSelect = false;
+                     for (int i = 0; i < _shop._towerGridHitboxes.Count; i++)
+                     {
+                        if (_shop._towerGridHitboxes[i].Contains(MousePosition.X, MousePosition.Y))
+                        {
+                            int x = ((_shop._towerGridHitboxes[i].X + _shop._towerGrid[0, 0]._textureBottom.Width / 2) / _tileSize) - _shop._towerSectionOffsetX;
+                            int y = (_shop._towerGridHitboxes[i].Y + _shop._towerGrid[0, 0]._textureBottom.Height / 2) / _tileSize;
+                            _shop._selectedTower = _shop._towerGrid[x, y];
+                            towerSelect = true;
+                        }
+                     }
+                    if (!towerSelect)
+                    {
+                        _shop._selectedTower = null;
+                    }
+                    
+                       
+                    }
+
+                  
+            }
+                        
+                   
+                
+        
+
             for (int i = 0; i < _mapEnemies.Count; i++) //loop through the list of enemies
             {
                 _mapEnemies[i].FollowPath(gameTime);
@@ -153,6 +305,7 @@ namespace ProjectReal
             {
                 _mapEnemies[i].Draw(spriteBatch);
             }
+            _shop.Draw(spriteBatch);
             
         }
 

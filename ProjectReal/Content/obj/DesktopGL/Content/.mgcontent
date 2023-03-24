@@ -4,6 +4,7 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
+    <File>C:/Users/ivanf/source/repos/ProjectReal/ProjectReal/Content/Font.spritefont</File>
     <File>C:/Users/ivanf/source/repos/ProjectReal/ProjectReal/Content/Portal.jpg</File>
     <File>C:/Users/ivanf/source/repos/ProjectReal/ProjectReal/Content/towerDefense_tile038.png</File>
     <File>C:/Users/ivanf/source/repos/ProjectReal/ProjectReal/Content/towerDefense_tile061.png</File>
@@ -25,6 +26,7 @@
     <File>C:/Users/ivanf/source/repos/ProjectReal/ProjectReal/Content/towerDefense_tile296.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

@@ -12,28 +12,39 @@ namespace ProjectReal
 {
     public class Input
     {
-        
-        //// Get the current state of the mouse
-        //MouseState StateOfMouse = Mouse.GetState();
-        
-        //    // Check if the left button is pressed
-        //   /* if (mouseState == ButtonState.Pressed)*/
-            
-        //    {
-        //        // Get the current position of the mouse
-        //        //Vector2 mousePosition = new Vector2(mouseState.X, mouseState.Y);
+        private MouseState currentMouseState;
+        private MouseState previousMouseState;
 
-        //// Do something with the mouse position
-        //// For example, draw a circle at the mouse position
-        ////Texture2D circleTexture = Content.Load<Texture2D>("circle");
-        ////_spriteBatch.Begin();
-        ////        _spriteBatch.Draw(circleTexture, mousePosition, Color.White);
-        ////        _spriteBatch.End();
-       
-        //public void update()
-        //{
-        //    _previousState = _currentState;
-        //    _currentState = Mouse.GetState();
-        //}
+        public void Update()
+        {
+            previousMouseState = currentMouseState;
+            currentMouseState = Mouse.GetState();
+        }
+
+        public bool IsLeftButtonDown()
+        {
+            return currentMouseState.LeftButton == ButtonState.Pressed;
+        }
+
+        public bool IsRightButtonDown()
+        {
+            return currentMouseState.RightButton == ButtonState.Pressed;
+        }
+
+        public bool WasLeftButtonClicked()
+        {
+            return previousMouseState.LeftButton == ButtonState.Released && currentMouseState.LeftButton == ButtonState.Pressed;
+        }
+
+        public bool WasRightButtonClicked()
+        {
+            return previousMouseState.RightButton == ButtonState.Released && currentMouseState.RightButton == ButtonState.Pressed;
+        }
+
+        public Vector2 GetMousePosition()
+        {
+            return new Vector2(currentMouseState.X, currentMouseState.Y);
+        }
+
     }
 }

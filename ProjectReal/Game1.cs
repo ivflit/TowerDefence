@@ -18,7 +18,7 @@ namespace ProjectReal
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private Stage _currentStage;
-        public Input _input;
+        
 
         
         public Game1() //constructor
@@ -27,7 +27,7 @@ namespace ProjectReal
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
             
-                    }
+        }
 
         protected override void Initialize() 
         {
@@ -47,9 +47,9 @@ namespace ProjectReal
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-          
+            _font = Content.Load<SpriteFont>("font");
            // var game = new Microsoft.Xna.Framework.Game();
-            
+
         }
 
         protected override void Update(GameTime gameTime)
@@ -57,24 +57,7 @@ namespace ProjectReal
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-           //_mouse.update();
-
-            // Get the current state of the mouse
-           //MouseState mouseState = Mouse.GetState();
-
-            // Check if the left button is pressed
-            //if (mouseState.LeftButton == ButtonState.Pressed)
-            {
-                // Get the current position of the mouse
-                //Vector2 mousePosition = new Vector2(mouseState.X, mouseState.Y);
-
-                // Do something with the mouse position
-                // For example, draw a circle at the mouse position
-                //Texture2D circleTexture = Content.Load<Texture2D>("circle");
-                //_spriteBatch.Begin();
-                //_spriteBatch.Draw(circleTexture, mousePosition, Color.White);
-                //_spriteBatch.End();
-            }
+           
 
             _currentStage.Update(gameTime);
             // TODO: Add your update logic here

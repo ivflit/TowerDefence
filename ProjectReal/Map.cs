@@ -149,14 +149,14 @@ namespace ProjectReal
             Tile randomTile;
             int XvalueForSpawner;
             int YvalueForSpawner;
-            int amountOfObstacles = 15;
+            int amountOfObstacles = 10;
             for (int i = 0; i < amountOfObstacles +1; i++)
             { 
                 int ObstacleIndex= rnd.Next(_obstacleNames.Count);
                 do
                 {
-                     XvalueForSpawner = rnd.Next(_mapXAmount);
-                     YvalueForSpawner = rnd.Next(_mapYAmount);
+                     XvalueForSpawner = rnd.Next(1,_mapXAmount-1); //avoids obstacles surrounding the spawners
+                     YvalueForSpawner = rnd.Next(1, _mapYAmount - 1);
                      randomTile = _map[XvalueForSpawner, YvalueForSpawner];
                 } while (_symbolMap[XvalueForSpawner,YvalueForSpawner] == 'p' || randomTile._obstacle !=null);
                 
@@ -165,7 +165,7 @@ namespace ProjectReal
                 _map[XvalueForSpawner, YvalueForSpawner]._obstacle = obstacle;
                 _nodeMap[XvalueForSpawner, YvalueForSpawner]._walkable = false;
             }
-        }
+        }// Generates and places obstacles
         private void LoadTerrain() //loading from terrain.txt and making new terrain based on the content of the file
         {
             String lineInput;
