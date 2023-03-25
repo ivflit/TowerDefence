@@ -15,9 +15,9 @@ namespace ProjectReal
         public int _health { get; set; }
         public int _score { get; set; }
         public int _money { get; set; }
-        public int _alive { get; set; }
+        public bool _alive { get; set; }
 
-        public Player(int health, int score, int money, int alive)
+        public Player(int health, int score, int money, bool alive)
         {
             _health = health;
             _score = score;

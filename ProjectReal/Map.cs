@@ -12,8 +12,9 @@ namespace ProjectReal
         public Node _startNode { get; set; }
         public Node _endNode;
         public Node[,] _nodeMap { get; set; }
+    public List<Microsoft.Xna.Framework.Rectangle> _rectangleMap { get; set; }
         Node _tileNode;
-        Tile[,] _map;
+       public Tile[,] _map;
         char[,] _symbolMap;
         Dictionary<char, Terrain> _symbolToTerrainDictionary;
         Dictionary<string,Obstacle> _nameToObstacleDictionary;
@@ -223,10 +224,10 @@ namespace ProjectReal
         }
         private void CreateMap()
         {
-            
-           
 
 
+
+            _rectangleMap = new List<Rectangle>();
             _mapXAmount = _symbolMap.GetUpperBound(0) + 1;
             _mapYAmount = _symbolMap.GetUpperBound(1) + 1;
             _spawnerPositions = new List<Vector2>();
@@ -264,7 +265,23 @@ namespace ProjectReal
                                 }
 
                             }
-                            _map[x, y] = mapTile;                            
+                           
+                            _map[x, y] = mapTile;
+                          
+                            int rectangleX = (x * _tileSize); //-_listOfTowers[i]._textureBottom.Width/2;
+                            int rectangleY;
+                            if (y == 0)
+                            {
+                                rectangleY = 0;
+                            }
+                            else
+                            {
+                                rectangleY = (y * _tileSize);
+                            }
+
+                            int rectangleWidth = mapTile._terrain._texture.Width;
+                            int rectangleHieght = mapTile._terrain._texture.Height;
+                            _rectangleMap.Add(new Microsoft.Xna.Framework.Rectangle(x * _tileSize, y * _tileSize, rectangleWidth, rectangleHieght));
                             _tileNode = new Node(x, y, true, mapTile._terrain._movementModifier);//make node
                             
                             _nodeMap[x, y] = _tileNode; //make node map
@@ -332,15 +349,20 @@ namespace ProjectReal
                 {
                     if (_map[x, y]._isSpawner == true || _map[x,y]._isEndTile == true) 
                     {
-                        spriteBatch.Draw(_map[x, y]._terrain._texture, new Vector2(x * _tileSize, y * _tileSize), Color.Purple);
+                        spriteBatch.Draw(_map[x, y]._terrain._texture, new Vector2(x * _tileSize, y * _tileSize), Color.Purple); //draw spawner + end tile
                     }
                     else
                     {
-                        spriteBatch.Draw(_map[x, y]._terrain._texture, new Vector2(x * _tileSize, y * _tileSize), Color.White);
+                        spriteBatch.Draw(_map[x, y]._terrain._texture, new Vector2(x * _tileSize, y * _tileSize), Color.White); //draw other tiles
                     }
                     if (_map[x, y]._obstacle != null)
                     {
-                        spriteBatch.Draw(_map[x, y]._obstacle._texture, new Vector2(x * _tileSize, y * _tileSize), Color.White);
+                        spriteBatch.Draw(_map[x, y]._obstacle._texture, new Vector2(x * _tileSize, y * _tileSize), Color.White);//draw obstaclles
+                    }
+                    if (_map[x, y]._mapTower != null)
+                    {
+                        spriteBatch.Draw(_map[x, y]._mapTower._towerType._textureBottom, new Vector2(x * _tileSize, y * _tileSize), Color.White);
+                        spriteBatch.Draw(_map[x, y]._mapTower._towerType._textureTop, new Vector2(x * _tileSize, y * _tileSize), Color.White);
                     }
 
                 }
@@ -348,25 +370,8 @@ namespace ProjectReal
 
             }
         }
-        private void CreateSpawner()
-        {
-
-        }
-        private void Pathfind()
-        {
-
-        }
-
-        private void CheckIfPathBlocked()
-        {
-
-        }
-
-
-        private void SpawnEnemy()
-        {
-
+      
         }
 
     }
-}
+

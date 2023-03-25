@@ -4,6 +4,7 @@ C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Cont
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Content\FastFiringTower.xnb
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Content\Flame.xnb
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Content\FlameThrower.xnb
+C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Content\Font.xnb
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Content\Grass.xnb
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Content\grassTexture.xnb
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Content\Mud.xnb
@@ -86,4 +87,3 @@ C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\obj\Debug\netcoreapp3.1\Proj
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\obj\Debug\netcoreapp3.1\ProjectReal.dll
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\obj\Debug\netcoreapp3.1\ProjectReal.pdb
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\obj\Debug\netcoreapp3.1\ProjectReal.genruntimeconfig.cache
-C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Content\Font.xnb

@@ -67,7 +67,7 @@ namespace ProjectReal
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             
             _spriteBatch.Begin();

@@ -41,9 +41,9 @@ namespace ProjectReal
         private void MakeTowerStats()
         {
             _statsOfTower = new List<string>();
-            _statsOfTower.Add(_name);
-            _statsOfTower.Add("HEALTH:" + _health);
-            _statsOfTower.Add("COST:" + _cost);
+            _statsOfTower.Add("NAME: " + _name);
+            _statsOfTower.Add("HEALTH: " + _health);
+            _statsOfTower.Add("COST: " + _cost);
             _statsOfTower.Add(_description);
             
         }

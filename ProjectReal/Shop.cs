@@ -71,7 +71,7 @@ namespace ProjectReal
            
             for (int i = 0; i < _selectedTower._statsOfTower.Count; i++)
             {
-                 spriteBatch.DrawString(Game1._font, _selectedTower._statsOfTower[i], new Vector2(_StatSectionOffsetX * _tileSize, _StatSectionOffsetY * _tileSize*i + _towerGridHitboxes[_towerGridHitboxes.Count - 1].Bottom), Microsoft.Xna.Framework.Color.White);
+                 spriteBatch.DrawString(Game1._font, _selectedTower._statsOfTower[i], new Vector2((_StatSectionOffsetX) * _tileSize, (_StatSectionOffsetY+i) * _tileSize + _towerGridHitboxes[_towerGridHitboxes.Count - 1].Bottom), Microsoft.Xna.Framework.Color.White);
             }
         }
 

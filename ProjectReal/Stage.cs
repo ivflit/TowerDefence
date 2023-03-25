@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework;
 using System.ComponentModel.Design;
+using System.ComponentModel.DataAnnotations;
 
 namespace ProjectReal
 {
@@ -15,6 +16,7 @@ namespace ProjectReal
         private Pathfinder _pathfinder;
         private int _tileSize;
         private Dictionary<string, EnemyType> _nameOfEnemyToType;
+        private bool _pathChecked;
         public int _difficulty { get; set; }
         private Player _player;
         private int _frameCounter;
@@ -224,49 +226,47 @@ namespace ProjectReal
             for (int i = 0; i < _mapEnemies.Count; i++) //loop through the list of enemies
             {
                 List<Node> path = new List<Node>();
-                path.AddRange( _pathfinder.FindPath(_mapEnemies[i]._currentNode, _map._endNode )); //finds a path based on an enemies current node and the map end node NEED TO CHANGE TO TOWER WITH LOWEST HEALTH LATER
+                _mapEnemies[i]._path = new List<Vector2>();
+                Node EnemyStartNode = _mapEnemies[i]._currentNode;
+                
+                    path.AddRange(_pathfinder.FindPath(EnemyStartNode, _map._endNode)); //finds a path based on an enemies current node and the map end node
+                
+                
                 vectorPath = new List<Vector2>();
                 for (int count = 0; count < path.Count; count++)
                 {
                      vectorPath.Add(new Vector2(path[count]._x, path[count]._y));
 
                 }
-                _mapEnemies[i]._path = new List<Vector2>();
+                
                 _mapEnemies[i]._path.AddRange(vectorPath); //add the contents of vector path to the map enemy path.
             }
         }
-        
-        public void Update(GameTime gameTime) //stage will be updated every frame, well undate logic/movemt/collison here
-        {
-            //if (Buildingplaced)
-            // {
-            // InstantiatePathForEnemy();
-            //}
-            _mouse.Update();
-            
-            Vector2 MousePosition = _mouse.GetMousePosition();
-            System.Diagnostics.Debug.WriteLine("{0},{1}", MousePosition.X,MousePosition.Y);
 
+        private void ShopTowerSelection(Vector2 MousePosition)
+        {
+          
+            //System.Diagnostics.Debug.WriteLine("{0},{1}", MousePosition.X, MousePosition.Y);
             if (_mouse.WasLeftButtonClicked())
             {
-                
-                    if (_shop._selectedTower == null) //if there is no selected tower
+
+                if (_shop._selectedTower == null) //if there is no selected tower
+                {
+                    for (int i = 0; i < _shop._towerGridHitboxes.Count; i++)
                     {
-                      for (int i = 0; i < _shop._towerGridHitboxes.Count; i++)
-                      {
                         if (_shop._towerGridHitboxes[i].Contains(MousePosition.X, MousePosition.Y))
                         {
                             int x = ((_shop._towerGridHitboxes[i].X + _shop._towerGrid[0, 0]._textureBottom.Width / 2) / _tileSize) - _shop._towerSectionOffsetX;
                             int y = (_shop._towerGridHitboxes[i].Y + _shop._towerGrid[0, 0]._textureBottom.Height / 2) / _tileSize;
                             _shop._selectedTower = _shop._towerGrid[x, y];
                         }
-                      }
                     }
-                    else
-                    {
+                }
+                else
+                {
                     bool towerSelect = false;
-                     for (int i = 0; i < _shop._towerGridHitboxes.Count; i++)
-                     {
+                    for (int i = 0; i < _shop._towerGridHitboxes.Count; i++)
+                    {
                         if (_shop._towerGridHitboxes[i].Contains(MousePosition.X, MousePosition.Y))
                         {
                             int x = ((_shop._towerGridHitboxes[i].X + _shop._towerGrid[0, 0]._textureBottom.Width / 2) / _tileSize) - _shop._towerSectionOffsetX;
@@ -274,21 +274,102 @@ namespace ProjectReal
                             _shop._selectedTower = _shop._towerGrid[x, y];
                             towerSelect = true;
                         }
-                     }
+                    }
                     if (!towerSelect)
                     {
                         _shop._selectedTower = null;
                     }
-                    
-                       
-                    }
 
-                  
+
+                }
+
+
             }
-                        
-                   
+        }
+        private bool ValidateTowerPlacement(int tileX, int tileY)
+        {
+            if (_map._map[tileX, tileY]._isSpawner == false && _map._map[tileX, tileY]._isEndTile == false && _map._map[tileX, tileY]._obstacle == null && _map._map[tileX, tileY]._mapTower == null && PathBlocked(tileX,tileY) == false )
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        private bool PathBlocked(int tileX, int tileY)
+        {
+            _map._nodeMap[tileX, tileY]._walkable = false;
+            
+
+
+            if (_pathfinder.FindPath(_map._startNode, _map._endNode) != null)
+            {
+                return false;
+            }
+            else
+            {
+                _map._nodeMap[tileX, tileY]._walkable = true;
+                return true;
                 
-        
+            }
+            
+           
+        }
+        private void TowerPlacement(Vector2 MousePosition)
+        {
+
+            int tileX;
+            int tileY;
+                    for (int i = 0; i < _map._rectangleMap.Count; i++)
+                    {
+               
+                        if (_map._rectangleMap[i].Contains(MousePosition.X, MousePosition.Y))
+                        {
+                           tileX = _map._rectangleMap[i].X / _tileSize;
+                           tileY = _map._rectangleMap[i].Y / _tileSize;
+                            if (ValidateTowerPlacement(tileX, tileY))
+                            {
+                               _map._map[tileX, tileY]._mapTower = new MapTower(true, _shop._selectedTower);
+                               InstantiatePathForEnemy();
+                       // _map._nodeMap[tileX, tileY]._walkable = false; - done in pathBlocked()
+                            }
+
+                    
+                        }
+                    }
+                
+               
+            
+        }
+        public void Update(GameTime gameTime) //stage will be updated every frame, well undate logic/movemt/collison here
+        {
+            //if (Buildingplaced)
+            // {
+            // InstantiatePathForEnemy();
+            //}
+            _mouse.Update();
+            Vector2 MousePosition = _mouse.GetMousePosition();
+            //System.Diagnostics.Debug.WriteLine("{0},{1}", _mapEnemies[0]._currentNode._x, _mapEnemies[0]._currentNode._y);
+            if (_mouse.WasLeftButtonClicked()) //if left button was clicked
+            {
+                if (MousePosition.X <= _map._mapXAmount * _tileSize && MousePosition.Y <= _map._mapYAmount * _tileSize) //if mouse was in the map
+                {
+                    if (_shop._selectedTower != null) // if there is a selected tower
+                    {
+                        TowerPlacement(MousePosition); //place tower
+                    }
+                    else
+                    {
+                        //SELECT BUILDING OR OBSTACLE
+                    }
+                }
+                else
+                {
+                    ShopTowerSelection(MousePosition); // if mouse is not in map bounds but left button clicked then select tower
+                }
+            }
+                   
 
             for (int i = 0; i < _mapEnemies.Count; i++) //loop through the list of enemies
             {

@@ -19,7 +19,7 @@ namespace ProjectReal
         private Node _startNode;
         private Node _endNode;
 
-        int _winner = 0;
+        int _winner;
         public Pathfinder(Node[,] grid) //grid is the maps array of nodes
         {
             this._nodeMap = grid;
@@ -31,11 +31,12 @@ namespace ProjectReal
             _openSet = new List<Node>();             //Openset is a list of all the cells that we have checked so we add startNode since that is the first point we check
 
             Node node = _nodeMap[startNode._x, startNode._y];
+            node._cameFrom = null;
             _openSet.Add(node);
            
             _closedSet = new List<Node>();
             Node Current;
-            
+            _winner = 0;
 
             while (_openSet.Count > 0)
             {
@@ -69,7 +70,7 @@ namespace ProjectReal
                     } //Backtracking all the points, we know where each one came from so go through it and add it to the path
 
                     _path.Reverse();
-                    _path.RemoveAt(0); //removes the start node (where the enemy is initially) 
+                    //_path.RemoveAt(0); //removes the start node (where the enemy is initially) 
                     return _path;
                 }
 
