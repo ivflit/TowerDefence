@@ -1,3 +1,8 @@
+C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\obj\Debug\netcoreapp3.1\ProjectReal.csproj.AssemblyReference.cache
+C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\obj\Debug\netcoreapp3.1\ProjectReal.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\obj\Debug\netcoreapp3.1\ProjectReal.AssemblyInfoInputs.cache
+C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\obj\Debug\netcoreapp3.1\ProjectReal.AssemblyInfo.cs
+C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\obj\Debug\netcoreapp3.1\ProjectReal.csproj.CoreCompileInputs.cache
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Content\ArmoredSolider.xnb
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Content\Boss.xnb
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Content\Bullet.xnb
@@ -78,11 +83,6 @@ C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\runt
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\soft_oal.dll
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\SDL2.dll
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\soft_oal.dll
-C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\obj\Debug\netcoreapp3.1\ProjectReal.csproj.AssemblyReference.cache
-C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\obj\Debug\netcoreapp3.1\ProjectReal.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\obj\Debug\netcoreapp3.1\ProjectReal.AssemblyInfoInputs.cache
-C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\obj\Debug\netcoreapp3.1\ProjectReal.AssemblyInfo.cs
-C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\obj\Debug\netcoreapp3.1\ProjectReal.csproj.CoreCompileInputs.cache
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\obj\Debug\netcoreapp3.1\ProjectReal.csproj.CopyComplete
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\obj\Debug\netcoreapp3.1\ProjectReal.dll
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\obj\Debug\netcoreapp3.1\ProjectReal.pdb

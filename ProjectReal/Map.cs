@@ -33,6 +33,7 @@ namespace ProjectReal
             CreateMap();
             spawnObstacles();
             GetNeighborNodes();
+            Console.WriteLine();
             //tileSize = 32;
             //Vector2 tilePosition;
             //Vector2 tileCentre = new Vector2(_tileSize / 2, _tileSize / 2);
@@ -251,7 +252,7 @@ namespace ProjectReal
                                 if (x == 0)
                                 {
                                     mapTile._isSpawner = true;
-                                    _spawnerPositions.Add(new Vector2(x * _tileSize, y * _tileSize));
+                                    _spawnerPositions.Add(new Vector2(0, (y * _tileSize)));
                                    //_spawnerPositions.Add(new Vector2(x, y));
                                      _startNode = new Node(x, y,true, mapTile._terrain._movementModifier);
                                     
@@ -295,7 +296,7 @@ namespace ProjectReal
                          
            
         }
-        private void GetNeighborNodes()
+        public void GetNeighborNodes()
             {
 
             int noneigh = 0;
@@ -304,37 +305,45 @@ namespace ProjectReal
                 for (int x = 0; x < _nodeMap.GetUpperBound(0) +1; x++) //loop through the array of nodes, add neighbours to each node given the x and y of each node
                 {
                     List<Node> neighborNodes = new List<Node>();
-                    
+                    _nodeMap[x, y]._neighbors = new List<Node>();
                     // Check the node above
-                    if (y > 0)
-                    {
-                        neighborNodes.Add(_nodeMap[x, y - 1]);
-                    }
+                    if (_nodeMap[x, y]._walkable ==true) {
+                        if (y > 0 && _nodeMap[x, y - 1]._walkable == true)
+                        {
+                            int newY = y - 1;
+                            neighborNodes.Add(_nodeMap[x, newY]);
+                        }
 
-                    //int ylength = _listOfNodes.GetLength(1);
-                    // Check the node below
-                    if (y < _nodeMap.GetLength(1)-1)
-                    {
-                        neighborNodes.Add(_nodeMap[x, y + 1]);
-                    }
+                        //int ylength = _listOfNodes.GetLength(1);
+                        // Check the node below
+                        if (y < _nodeMap.GetLength(1) - 1 && _nodeMap[x, y + 1]._walkable == true)
+                        {
+                            int newY = y + 1;
+                            neighborNodes.Add(_nodeMap[x, newY]);
+                        }
 
-                    // Check the node to the left
-                    if (x > 0)
-                    {
-                        neighborNodes.Add(_nodeMap[x - 1, y]);
-                    }
+                        // Check the node to the left
+                        if (x > 0 && _nodeMap[x - 1, y]._walkable == true)
+                        {
+                            int newX = x - 1;
+                            neighborNodes.Add(_nodeMap[newX, y]);
+                        }
 
-                    // Check the node to the right
-                    if (x < _nodeMap.GetLength(0)-1 )
-                    {
-                        neighborNodes.Add(_nodeMap[x + 1, y]);
+                        // Check the node to the right
+                        if (x < _nodeMap.GetLength(0) - 1 && _nodeMap[x + 1, y]._walkable == true)
+                        {
+                            int newx = x + 1;
+                            neighborNodes.Add(_nodeMap[newx, y]);
+                        }
+
+                        neighborNodes.Remove(_nodeMap[x, y]);
+                        if (neighborNodes.Count == 0)
+                        {
+                            noneigh++;
+                        }
+                        _nodeMap[x, y]._neighbors.AddRange(neighborNodes); //that nodes neighbours are the list we just created
                     }
-                    
-                    if (neighborNodes.Count ==0)
-                    {
-                        noneigh++;
-                    }
-                    _nodeMap[x, y]._neighbors.AddRange(neighborNodes); //that nodes neighbours are the list we just created
+                   
                 }
             }
             

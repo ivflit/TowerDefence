@@ -98,7 +98,7 @@ namespace ProjectReal
 
    
        
-     private void InstantiateMapEnemy()
+        private void InstantiateMapEnemy()
         {
             Random rnd = new Random();
              int randomEnemyIndex = rnd.Next(_enemyTypeNames.Count);
@@ -227,9 +227,10 @@ namespace ProjectReal
             {
                 List<Node> path = new List<Node>();
                 _mapEnemies[i]._path = new List<Vector2>();
-                Node EnemyStartNode = _mapEnemies[i]._currentNode;
-                
-                    path.AddRange(_pathfinder.FindPath(EnemyStartNode, _map._endNode)); //finds a path based on an enemies current node and the map end node
+                //_mapEnemies[i]._path = null;
+                // Node EnemyStartNode = _mapEnemies[i]._currentNode;
+                _map.GetNeighborNodes();
+                path.AddRange(_pathfinder.FindPath(_mapEnemies[i]._currentNode, _map._endNode)); //finds a path based on an enemies current node and the map end node
                 
                 
                 vectorPath = new List<Vector2>();
@@ -286,9 +287,38 @@ namespace ProjectReal
 
             }
         }
-        private bool ValidateTowerPlacement(int tileX, int tileY)
+        private void TowerPlacement(Vector2 MousePosition)
         {
-            if (_map._map[tileX, tileY]._isSpawner == false && _map._map[tileX, tileY]._isEndTile == false && _map._map[tileX, tileY]._obstacle == null && _map._map[tileX, tileY]._mapTower == null && PathBlocked(tileX,tileY) == false )
+            int rectangleIndex;
+            int tileX;
+            int tileY;
+            for (int i = 0; i < _map._rectangleMap.Count; i++)
+            {
+
+                if (_map._rectangleMap[i].Contains(MousePosition.X, MousePosition.Y))
+                {
+                    rectangleIndex = i;
+
+                    tileX = _map._rectangleMap[i].X / _tileSize;
+                    tileY = _map._rectangleMap[i].Y / _tileSize;
+                    if (ValidateTowerPlacement(tileX, tileY, rectangleIndex))
+                    {
+                        _map._map[tileX, tileY]._mapTower = new MapTower(true, _shop._selectedTower);
+                        InstantiatePathForEnemy();
+                        // _map._nodeMap[tileX, tileY]._walkable = false; - done in pathBlocked()
+                    }
+
+
+                }
+            }
+
+
+
+        }
+        private bool ValidateTowerPlacement(int tileX, int tileY, int rectangleIndex)
+        {
+                       
+            if (_map._map[tileX, tileY]._isSpawner == false && _map._map[tileX, tileY]._isEndTile == false && _map._map[tileX, tileY]._obstacle == null && _map._map[tileX, tileY]._mapTower == null && PathBlocked(tileX, tileY) ==false && notOnTopOfEnemy(rectangleIndex))
             {
                 return true;
             }
@@ -296,6 +326,21 @@ namespace ProjectReal
             {
                 return false;
             }
+        }
+        private bool notOnTopOfEnemy(int rectangleIndex)
+        {
+
+            for (int i = 0; i < _mapEnemies.Count; i++) //loop through all the enemies on the map
+            {
+                if (_map._rectangleMap[rectangleIndex].Contains(Convert.ToInt16((_mapEnemies[i]._positionRelativeToTextures.X)), Convert.ToInt16((_mapEnemies[i]._positionRelativeToTextures.Y)))) //if the tile rectangle you selected contains an enemy
+                {
+
+                    return false;
+                }
+
+            }
+            return true;
+
         }
         private bool PathBlocked(int tileX, int tileY)
         {
@@ -305,43 +350,20 @@ namespace ProjectReal
 
             if (_pathfinder.FindPath(_map._startNode, _map._endNode) != null)
             {
+                
                 return false;
             }
             else
             {
                 _map._nodeMap[tileX, tileY]._walkable = true;
+               
                 return true;
                 
             }
             
            
         }
-        private void TowerPlacement(Vector2 MousePosition)
-        {
-
-            int tileX;
-            int tileY;
-                    for (int i = 0; i < _map._rectangleMap.Count; i++)
-                    {
-               
-                        if (_map._rectangleMap[i].Contains(MousePosition.X, MousePosition.Y))
-                        {
-                           tileX = _map._rectangleMap[i].X / _tileSize;
-                           tileY = _map._rectangleMap[i].Y / _tileSize;
-                            if (ValidateTowerPlacement(tileX, tileY))
-                            {
-                               _map._map[tileX, tileY]._mapTower = new MapTower(true, _shop._selectedTower);
-                               InstantiatePathForEnemy();
-                       // _map._nodeMap[tileX, tileY]._walkable = false; - done in pathBlocked()
-                            }
-
-                    
-                        }
-                    }
-                
-               
-            
-        }
+      
         public void Update(GameTime gameTime) //stage will be updated every frame, well undate logic/movemt/collison here
         {
             //if (Buildingplaced)
@@ -350,7 +372,8 @@ namespace ProjectReal
             //}
             _mouse.Update();
             Vector2 MousePosition = _mouse.GetMousePosition();
-            //System.Diagnostics.Debug.WriteLine("{0},{1}", _mapEnemies[0]._currentNode._x, _mapEnemies[0]._currentNode._y);
+          
+            
             if (_mouse.WasLeftButtonClicked()) //if left button was clicked
             {
                 if (MousePosition.X <= _map._mapXAmount * _tileSize && MousePosition.Y <= _map._mapYAmount * _tileSize) //if mouse was in the map
@@ -374,7 +397,8 @@ namespace ProjectReal
             for (int i = 0; i < _mapEnemies.Count; i++) //loop through the list of enemies
             {
                 _mapEnemies[i].FollowPath(gameTime);
-                _mapEnemies[i]._currentNode = _map._nodeMap[_mapEnemies[i]._currentNode._x, _mapEnemies[i]._currentNode._y];
+                _mapEnemies[i]._currentNode = _map._nodeMap[Convert.ToInt16(Convert.ToInt16(_mapEnemies[i]._position.X / 64)), Convert.ToInt16(_mapEnemies[i]._position.Y / 64)];
+                System.Diagnostics.Debug.WriteLine("{0},{1}",_mapEnemies[i]._currentNode._x, _mapEnemies[i]._currentNode._y);
             }
         }
 
