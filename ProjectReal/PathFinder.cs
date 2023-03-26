@@ -74,7 +74,7 @@ namespace ProjectReal
                     _path.Reverse();
                     if (pathCount > 0)
                     {
-                        _path.RemoveAt(0); //prevents enemy going back on itself
+                       // _path.RemoveAt(0); //prevents enemy going back on itself
                     }
                     //_path.RemoveAt(0); //removes the start node (where the enemy is initially) 
                     pathCount++;

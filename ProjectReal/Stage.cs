@@ -398,7 +398,8 @@ namespace ProjectReal
             {
                 _mapEnemies[i].FollowPath(gameTime);
                 _mapEnemies[i]._currentNode = _map._nodeMap[Convert.ToInt16(Convert.ToInt16(_mapEnemies[i]._position.X / 64)), Convert.ToInt16(_mapEnemies[i]._position.Y / 64)];
-                System.Diagnostics.Debug.WriteLine("{0},{1}",_mapEnemies[i]._currentNode._x, _mapEnemies[i]._currentNode._y);
+
+               
             }
         }
 
