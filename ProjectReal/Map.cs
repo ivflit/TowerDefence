@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Net.Mime;
+using System.Reflection.Metadata;
 
 namespace ProjectReal
 {
@@ -132,7 +133,7 @@ namespace ProjectReal
                         costToRemove = Convert.ToInt16(splitLine[2]);
                         Texture2D obstacleTexture = Game1._graphicsloader.Load<Texture2D>(fileName);
                         _obstacleNames.Add(name); 
-                        obstacle = new Obstacle(name, costToRemove, obstacleTexture);
+                        obstacle = new Obstacle(name, costToRemove, obstacleTexture, Microsoft.Xna.Framework.Color.White);
                         _nameToObstacleDictionary.Add(name, obstacle);
 
                     }
@@ -163,8 +164,10 @@ namespace ProjectReal
                 } while (_symbolMap[XvalueForSpawner,YvalueForSpawner] == 'p' || randomTile._obstacle !=null);
                 
                 string name = _obstacleNames[ObstacleIndex];
+               
                 _nameToObstacleDictionary.TryGetValue(name, out Obstacle obstacle);
-                _map[XvalueForSpawner, YvalueForSpawner]._obstacle = obstacle;
+                Obstacle mapObstacle = new Obstacle(name, obstacle._costToRemove,obstacle._texture,obstacle._color);
+                _map[XvalueForSpawner, YvalueForSpawner]._obstacle = mapObstacle;
                 _nodeMap[XvalueForSpawner, YvalueForSpawner]._walkable = false;
             }
         }// Generates and places obstacles
@@ -366,12 +369,21 @@ namespace ProjectReal
                     }
                     if (_map[x, y]._obstacle != null)
                     {
-                        spriteBatch.Draw(_map[x, y]._obstacle._texture, new Vector2(x * _tileSize, y * _tileSize), Color.White);//draw obstaclles
+                        spriteBatch.Draw(_map[x, y]._obstacle._texture, new Vector2(x * _tileSize, y * _tileSize), _map[x, y]._obstacle._color);//draw obstaclles
                     }
                     if (_map[x, y]._mapTower != null)
                     {
-                        spriteBatch.Draw(_map[x, y]._mapTower._towerType._textureBottom, new Vector2(x * _tileSize, y * _tileSize), Color.White);
-                        spriteBatch.Draw(_map[x, y]._mapTower._towerType._textureTop, new Vector2(x * _tileSize, y * _tileSize), Color.White);
+                        Vector2 origin = new Vector2(_map[x, y]._mapTower._towerType._textureTop.Width / 2, _map[x, y]._mapTower._towerType._textureTop.Height / 2);
+                        Texture2D rectTexture = new Texture2D(Game1._graphics.GraphicsDevice, 1, 1);
+                        rectTexture.SetData(new Color[] { Color.White });
+                        spriteBatch.Draw(_map[x, y]._mapTower._towerType._textureBottom, new Vector2(x * _tileSize, y * _tileSize),_map[x, y]._mapTower._color);
+                        spriteBatch.Draw(_map[x, y]._mapTower._towerType._textureTop, new Vector2(x * _tileSize +32, y * _tileSize + 32), null, _map[x, y]._mapTower._color, _map[x, y]._mapTower._angleOfTexture, origin, 1f, SpriteEffects.None, 0);
+                        _map[x, y]._mapTower.DrawHealthBar(spriteBatch, rectTexture, _map[x, y]._mapTower._health, _map[x, y]._mapTower._maxHealth, Microsoft.Xna.Framework.Color.Red, Microsoft.Xna.Framework.Color.LawnGreen);
+                        // spriteBatch.Draw(_map[x, y]._mapTower._towerType._textureTop, new Vector2(x * _tileSize, y * _tileSize), _map[x, y]._mapTower._color);
+
+
+
+
                     }
 
                 }

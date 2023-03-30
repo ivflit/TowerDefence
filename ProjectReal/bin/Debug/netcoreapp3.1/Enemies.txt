@@ -1,4 +1,4 @@
-﻿Soldier,towerDefense_tile245,100,100,5,false
-Sprinter,towerDefense_tile248,60,25,false
-ArmoredSoldier,towerDefense_tile246,300,10,10,false
-Boss,towerDefense_tile247,1000,5,15,true
+﻿Soldier,towerDefense_tile245,100,70,5,false,50,10,2
+Sprinter,towerDefense_tile248,80,90,5,false,50,10,1
+ArmoredSoldier,towerDefense_tile246,300,50,10,false,100,50,5
+Boss,towerDefense_tile247,1000,25,15,true,1000,400,20

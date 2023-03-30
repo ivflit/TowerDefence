@@ -1,8 +1,3 @@
-C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\obj\Debug\netcoreapp3.1\ProjectReal.csproj.AssemblyReference.cache
-C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\obj\Debug\netcoreapp3.1\ProjectReal.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\obj\Debug\netcoreapp3.1\ProjectReal.AssemblyInfoInputs.cache
-C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\obj\Debug\netcoreapp3.1\ProjectReal.AssemblyInfo.cs
-C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\obj\Debug\netcoreapp3.1\ProjectReal.csproj.CoreCompileInputs.cache
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Content\ArmoredSolider.xnb
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Content\Boss.xnb
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Content\Bullet.xnb
@@ -24,6 +19,7 @@ C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Cont
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Content\SlowFiringTower.xnb
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Content\Soldier.xnb
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Content\sprinter.xnb
+C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Content\tile.xnb
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Content\TowerBase.xnb
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Content\towerDefense_tile038.xnb
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\Content\towerDefense_tile061.xnb
@@ -83,6 +79,11 @@ C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\runt
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\soft_oal.dll
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\SDL2.dll
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\soft_oal.dll
+C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\obj\Debug\netcoreapp3.1\ProjectReal.csproj.AssemblyReference.cache
+C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\obj\Debug\netcoreapp3.1\ProjectReal.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\obj\Debug\netcoreapp3.1\ProjectReal.AssemblyInfoInputs.cache
+C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\obj\Debug\netcoreapp3.1\ProjectReal.AssemblyInfo.cs
+C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\obj\Debug\netcoreapp3.1\ProjectReal.csproj.CoreCompileInputs.cache
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\obj\Debug\netcoreapp3.1\ProjectReal.csproj.CopyComplete
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\obj\Debug\netcoreapp3.1\ProjectReal.dll
 C:\Users\ivanf\source\repos\ProjectReal\ProjectReal\obj\Debug\netcoreapp3.1\ProjectReal.pdb

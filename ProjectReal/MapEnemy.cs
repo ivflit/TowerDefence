@@ -13,22 +13,29 @@ namespace ProjectReal
 {
     class MapEnemy
     {
-       
-        public Rectangle _hitbox { get; }
-        public Vector2 _position { get; set; }
+        public int _currentHealth { get; set; }
+        public int _scorePerKill { get; set; }
+        public  int _moneyPerKill { get; set; }
+        public int _livesLostWhenEndReached { get; set; }
+        public  Vector2 _position { get; set; }
         public Vector2 _positionRelativeToTextures { get; set; }
         public EnemyType _enemyType { get; }
 
+       
         public List<Vector2> _path { get; set; }
+        public int _indexInMapEnemy { get; set; }
 
         public Node _currentNode { get; set; }
+       public Microsoft.Xna.Framework.Rectangle _enemyHitbox { get; set; }
 
-        public MapEnemy(Vector2 position, EnemyType enemyType)
+        public MapEnemy(Vector2 position, EnemyType enemyType)// Microsoft.Xna.Framework.Rectangle rectangle)
         {
           
             _position = position;
           
             _enemyType = enemyType;
+            _currentHealth = enemyType._health;
+           // _enemyHitbox = rectangle;
         }
         public void FollowPath(GameTime gameTime)
         {
@@ -51,25 +58,11 @@ namespace ProjectReal
                 Vector2 directionToNodeAhead = new Vector2(0, 0);
                Vector2 tempDirection = new Vector2(0, 0);
                
-                Vector2 CurrentNodeVector = new Vector2(_currentNode._x * 64, _currentNode._y * 64);
-             
+                Vector2 CurrentNodeVector = new Vector2(_currentNode._x * 64, _currentNode._y * 64);            
                 
                 Vector2 NodeToNodeDirection = new Vector2(0, 0);
 
-                // direction = Vector2.Normalize(target - _position); //vector from our position to target
-                 //Vector2 targetToAheadOfTarget = new Vector2();
-                 //argetToAheadOfTarget = Vector2.Normalize(aheadOfTarget * 64 - target * 64); //vector from target to ahead of target
-                // If we're close enough to the target node, remove it from the path
-                //if distance from pos to target > position to target +1
-              
-                //if ((direction == Vector2.Normalize(target - CurrentNodeVector)) && (Vector2.Distance(_position, target) < Vector2.Distance(CurrentNodeVector, target)))
-                //{
-                  // direction = NodeToNodeDirection;
-                   // _position += direction * speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-                    //_path.RemoveAt(0);
-              //  }
-
-                //current node is path[0,0] at the start 
+                            
 
               
 
@@ -77,7 +70,7 @@ namespace ProjectReal
                 {
                   
                     
-                    _path.RemoveAt(0);// if the enemy is close enough then go onto the next vector in the path by removing the current target
+                    _path.RemoveAt(0);// if the enemy is close enough then go onto the next vector in the path by removing the current target ie If we're close enough to the target node, remove it from the path
                 }
                 else
                 {
@@ -149,7 +142,7 @@ namespace ProjectReal
                     _position += direction * speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
                     _positionRelativeToTextures = _position + new Vector2(32, 32);
 
-                    System.Diagnostics.Debug.WriteLine("{0},   {1} ",directionToNodeAhead, direction );
+                   
                    // _currentNode._x = Convert.ToInt16((_position.X / 64));
                    // _currentNode._y = Convert.ToInt16((_position.Y / 64));
                    
@@ -157,10 +150,30 @@ namespace ProjectReal
               
             }
         }
-       
+        
+        public void DrawHealthBar(SpriteBatch spriteBatch, Texture2D pixelTexture, int currentHealth, int maxHealth, Color bgColor, Color fillColor)
+        {
+            // Define the position and size of the health bar
+            Rectangle healthBarRect = new Rectangle((int)_position.X+15, (int)_position.Y+10, 32, 5);
+
+            // Calculate the fill percentage of the health bar
+            float fillPercentage = (float)currentHealth / maxHealth;
+
+            // Draw the background rectangle of the health bar
+            spriteBatch.Draw(pixelTexture, healthBarRect, bgColor);
+
+            // Draw the fill rectangle of the health bar
+            int fillWidth = (int)(healthBarRect.Width * fillPercentage);
+            Rectangle fillRect = new Rectangle(healthBarRect.X, healthBarRect.Y, fillWidth, healthBarRect.Height);
+            spriteBatch.Draw(pixelTexture, fillRect, fillColor);
+        }
         public void Draw(SpriteBatch spriteBatch)
         {
+            Texture2D rectTexture = new Texture2D(Game1._graphics.GraphicsDevice, 1, 1);
+            rectTexture.SetData(new Color[] { Color.White });
+           // spriteBatch.Draw(rectTexture,_enemyHitbox, Color.Red);
             spriteBatch.Draw(_enemyType._texture, _position, Color.White);
+            DrawHealthBar(spriteBatch, rectTexture, _currentHealth , _enemyType._health, Microsoft.Xna.Framework.Color.Red, Microsoft.Xna.Framework.Color.LawnGreen);
 
         }
        

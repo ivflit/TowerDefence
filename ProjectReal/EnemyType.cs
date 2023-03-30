@@ -18,7 +18,10 @@ namespace ProjectReal
         public string _typeName { get; }
         public bool _isCamoflagued { get; }
 
-        public EnemyType(Texture2D texture, int health, int movementSpeed, int damage, string typeName, bool iscamoflagued)
+        public int _scorePerKill { get; set; }
+        public int _moneyPerKill { get; set; }
+        public int _livesLostWhenEnd { get; set; }
+        public EnemyType(Texture2D texture, int health, int movementSpeed, int damage, string typeName, bool iscamoflagued, int scorePerKill, int moneyPerKill, int liveslost)
         {
             _texture = texture;
             _health = health;
@@ -26,7 +29,9 @@ namespace ProjectReal
             _damage = damage;
             _typeName = typeName;
             _isCamoflagued = iscamoflagued;
-
+            _scorePerKill = scorePerKill;
+            _moneyPerKill = moneyPerKill;
+            _livesLostWhenEnd = liveslost;
         }      
 
         

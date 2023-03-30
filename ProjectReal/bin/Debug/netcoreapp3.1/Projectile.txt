@@ -1,3 +1,3 @@
-﻿bullet,towerDefense_tile272,10,20 
-flame,towerDefense_tile296,5,20
-rocket,towerDefense_tile252,50,5
+﻿bullet,towerDefense_tile272,10,100
+flame,towerDefense_tile296,5,100
+rocket,towerDefense_tile252,50,100

@@ -1,4 +1,4 @@
-﻿Fast,towerDefense_tile250,bullet,100,Fast firing but low damage tower, 50,100,100
-Slow,towerDefense_tile249,bullet,120, Normal firing with normal damage tower,50,100,200
-Rocket,towerDefense_tile204,rocket,150,Slow firing but high damage,50,100,500
-FlameThrower,towerDefense_tile226,flame,200,Blazes the enemies,50,100,150
+﻿Fast,towerDefense_tile250,bullet,100,Fast firing but low damage tower, 50,100,100,1,10
+Slow,towerDefense_tile249,bullet,120, Normal firing with normal damage tower,50,100,200,3,20
+Rocket,towerDefense_tile204,rocket,150,Slow firing but high damage,50,100,500,5,50
+FlameThrower,towerDefense_tile226,flame,200,Blazes the enemies,50,100,150,1,5

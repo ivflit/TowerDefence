@@ -20,12 +20,13 @@ namespace ProjectReal
         public Texture2D _textureBottom { get; }
         public int _health { get; }
         public int _cost { get; }
+        public float _fireRate { get; set; }
         public string _description { get; }
         public List<string> _statsOfTower { get; set; }
-
+        public int _damage { get;set; }
         public Projectile _projectile { get; } //it will be set in this class so no need for set;
 
-        public TowerType(string name, int upgradeOneCost, int upgradeTwoCost, Texture2D texture, Texture2D bottomOfTower, int health, int cost, string description, Projectile projectile)
+        public TowerType(string name, int upgradeOneCost, int upgradeTwoCost, Texture2D texture, Texture2D bottomOfTower, int health, int cost, string description, Projectile projectile, float fireRate, int damage)
         {
             _textureBottom = bottomOfTower;
             _name = name;
@@ -37,6 +38,8 @@ namespace ProjectReal
             _description = description;
             _projectile = projectile;
             MakeTowerStats();
+            _fireRate = fireRate;
+            _damage = damage;
         }
         private void MakeTowerStats()
         {

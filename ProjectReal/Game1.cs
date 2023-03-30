@@ -9,13 +9,20 @@ using Microsoft.Xna.Framework.Content;
 
 namespace ProjectReal
 {
+    public enum GameState
+    {
+        MainMenu,
+        Playing,
+        Paused,
+        GameOver
+    }
     public class Game1 : Microsoft.Xna.Framework.Game //make everything private and then do the thing. Make a tile arc class which acts as the edge between two tiles
     {
-        public static Settings.GameState _gameState ; //what's the game doing?
+        public GameState _gameState ; //what's the game doing?
         public static ContentManager _graphicsloader;
         public static SpriteFont _font;
         public static Input _mouse;
-        private GraphicsDeviceManager _graphics;
+        public static GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private Stage _currentStage;
         
