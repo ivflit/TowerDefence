@@ -13,4 +13,4 @@ I had to research into pathfinding algorithms like A* and Djikstras and had to i
 
 ## Video of the project
 
-Video of my project can be found (here)[https://youtube.com/@IvanFlitcroftTesting?si=wQGeCTRnl8-Q8KuM]
+Video of my project can be found [here](https://youtube.com/@IvanFlitcroftTesting?si=wQGeCTRnl8-Q8KuM)
